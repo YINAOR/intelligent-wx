@@ -1,0 +1,38 @@
+@import "../_config.scss";
+
+html,
+body {
+    background-color: #efefef;
+    font-size: 0;
+}
+
+.ui-main {
+    font-size: 0;
+}
+
+.ui-list {
+	margin-top: .3rem;
+	color: #000;
+}
+
+.ui-line {
+	position: relative;
+	padding: .065rem .3rem;
+	display: flex;
+	background-color: #fff;
+	@include line(down);
+}
+
+.ui-line__label {
+	flex: 1;
+	font-size: .3rem;
+}
+
+.ui-line__icon {
+    position: absolute;
+    top: .17rem;
+    right: .5rem;
+    width: .3rem;
+    height: .3rem;
+    @include bgi-full(url(../../image/me/right.png));
+}
