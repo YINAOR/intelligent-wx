@@ -49,9 +49,9 @@ define(function(require, exports, module) {
                 },
                 success: function(res){
                     if(res.code == 200){ 
-                        this.allList.push(res.data.paging.list);
+                        /*this.allList.push(res.data.paging.list);
                         console.log(res.data.paging.list)
-                        _g.render('lecture/list_future_view',data,'#table');
+                        _g.render('lecture/list_future_view',data,'#table');*/
                         
                     }else {
                         var result = { list: [] };

@@ -208,7 +208,7 @@ body {
   margin: 5px 0;
   width: 48%;
   height: 0.6rem;
-  border-radius: 5%;
+  border-radius: 20px;
   background-color: rgb(35, 35, 35);
   color: rgb(210, 210, 210);
   font-size: 0.30rem;
