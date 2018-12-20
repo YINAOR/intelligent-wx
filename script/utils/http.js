@@ -19,6 +19,7 @@ define(function(require, exports, module) {
             // 接口版本号
             api_versions: 'v1',
             // app版本号
+
             app_versions: api ? api.appVersion : '0.0.0',
             // 设备唯一标识
             device_code: api ? api.deviceId : 'developer',
@@ -62,25 +63,26 @@ define(function(require, exports, module) {
             return postData;
         },
         ajax: function(opts) {
-            var startTime = new Date().getTime();
-            _g.setLS('LastTime', startTime);
+            // var startTime = new Date().getTime();
+            // _g.setLS('LastTime', startTime);
             var self = this;
-            if(self.isLock) return;
+            // if(self.isLock) return;
             if(!opts.data || !opts.url) return;
             // var postData = self.fetchPostData(opts.data);
             var postData = {
                 data: $.extend(true, {}, opts.data),
                 token: opts.token || sessionStorage.getItem('token')
             };
-            if(opts.lock !== false) self.lock();
-            if(opts.isSync) _g.showProgress();
+            // if(opts.lock !== false) self.lock();
+            // if(opts.isSync) _g.showProgress();
             $.ajax({
                 url: CONFIG.HOST + opts.url,
-                type: opts.method || 'post',
-                data: JSON.stringify(postData),
+                async: opts.async || true,
                 dataType:"json",
+                type: opts.method || 'post',
                 contentType: opts.contentType || 'application/json', //'application/x-www-form-urlencoded'
                 processData: opts.processData || false, //!== false,
+                data: JSON.stringify(postData),
                 success: function (result) {
                     opts.success && opts.success(result);
                 },
@@ -89,17 +91,21 @@ define(function(require, exports, module) {
                     opts.error && opts.error(err);
                 }
             })
+
             // api && api.ajax({
             //     url: CONFIG.HOST + opts.url,
             //     method: opts.method || 'post',
+            //     headers: {
+            //         'Content-Type': 'application/json;charset=utf-8'
+            //     },
             //     timeout: 60*20,
             //     dataType: 'json',
             //     returnAll: false,
-            //     data: { values: postData }
+            //     data: postData
             // }, function(ret, err){
-            //     self.unlock();
-            //     _g.refreshDone();
-            //     if(opts.isSync) _g.hideProgress();
+            //     // self.unlock();
+            //     // _g.refreshDone();
+            //     // if(opts.isSync) _g.hideProgress();
             //     if(ret){
             //         opts.success && opts.success(ret);
             //     }else {
