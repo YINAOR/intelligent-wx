@@ -1,7 +1,6 @@
 define(function (require, exports, module) {
     var Http = require('U/http');
     var id= api.pageParam.id;
-    console.log(id)
 
     var main = new Vue({
         el: '#main',
@@ -102,9 +101,8 @@ define(function (require, exports, module) {
                         url: "student/saveLectureComment.do",
                         async: false,
                         data: {
-                            deviceCode:1,
                             lectureComment:{
-                                id:1, //模拟
+                                id:id, //模拟
                                 commentContent: commentContent,
                             }
                         },
@@ -121,14 +119,12 @@ define(function (require, exports, module) {
         getDetail:  function() {
 
 
-            console.log(id)
-
             Http.ajax({
                 url: "user/queryLectureDetail.do",
                 async: false,
                 data: {
 
-                    id: id //模拟而已
+                    id: id 
                 },
                 success: function(res){
                     if(res.code == 200){ 

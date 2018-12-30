@@ -1,5 +1,7 @@
 define(function(require, exports, module) {
     var Http = require('U/http');
+    var id= api.pageParam.id;
+    console.log(id)
 
     var main = new Vue({
         el: '#main',
@@ -50,8 +52,7 @@ define(function(require, exports, module) {
                 url: "user/queryTeahouseDetail.do",
                 async: false,
                 data: {
-
-                    id: 1 //模拟而已
+                    id: id //模拟而已
                 },
                 success: function(res) {
                     if (res.code == 200) {
