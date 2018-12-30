@@ -1,4 +1,4 @@
-define(function (require, exports, module) {
+define(function(require, exports, module) {
     var Http = require('U/http');
 
     var main = new Vue({
@@ -10,9 +10,9 @@ define(function (require, exports, module) {
             content: '',
             dateStr: '',
             startTimeStr: '',
-            endTimeStr:'',
+            endTimeStr: '',
             address: '',
-            speakerLinkList:[],
+            speakerLinkList: [],
             groupOfPep: '',
             limitNumOfPep: 0,
             category: {},
@@ -21,22 +21,20 @@ define(function (require, exports, module) {
         },
         ready: function() {
             sessionStorage.setItem("deviceCode", 1);
-            sessionStorage.setItem("token","3115004205-6a7cc55dbfc14743b7b0cc20e33fe6d3");
+            sessionStorage.setItem("token", "3115004205-6a7cc55dbfc14743b7b0cc20e33fe6d3");
         },
         methods: {
             signTap: function() {
-                var apply = confirm("您确定要预报名吗");
-
-                if(!main.isSignUp) {
+                if (!main.isSignUp) {
                     main.isSignUp = !main.isSignUp;
-                    main.SignUpNum ++;
+                    main.SignUpNum++;
                     Http.ajax({
                         url: "/student/teahouseAppointment.do",
                         isAsync: false,
                         data: {
-                            
+
                         },
-                        success: function(res){
+                        success: function(res) {
                             console.log(res) //添加提示
                         }
                     })
@@ -46,7 +44,7 @@ define(function (require, exports, module) {
     });
 
     var _page = {
-        getDetail:  function() {
+        getDetail: function() {
 
             Http.ajax({
                 url: "user/queryTeahouseDetail.do",
@@ -55,8 +53,8 @@ define(function (require, exports, module) {
 
                     id: 1 //模拟而已
                 },
-                success: function(res){
-                    if(res.code == 200){ 
+                success: function(res) {
+                    if (res.code == 200) {
                         console.log(res)
                         var data1 = res.data.teahouse;
                         console.log(data1)
@@ -78,10 +76,28 @@ define(function (require, exports, module) {
                     }
                 }
             })
+        },
+        openFrame: function() {
+            layer.open({
+                title: [
+                    '请输入预约说明',
+                    'background-color:#1E9FFF; color:#fff; font-size: 18px;'
+                ],
+                anim: 'up',
+                content: '<input type="text" id="values" style="display:block;width:230px;height:36px;line-height:36px;margin:0 auto;padding-left: 30px; border: 1px solid #e6e6e6; color: #333;">',
+                btn: ['确认', '取消'],
+                yes: function(index){
+                   alert($('#values').val())
+                   layer.close(index)
+                }    
+            });
         }
     }
-        
+
+_page.openFrame();
+
     _page.getDetail();
-    
+
+
     module.exports = {};
 })

@@ -1,7 +1,7 @@
 <div class="ui-main">
 	<div class="ui-search">
 		<i v-touch:tap="searchTap"></i>
-		<input type="text" placeholder="请输入讲座主题等关键字" class="ui-search__box"></input>
+		<input type="text" placeholder="请输入讲座主题等关键字" id="searchKey" class="ui-search__box"></input>
 	</div>
 	<div class="ui-noInfo" v-show="showInfo === 0">
 		<i></i>
@@ -10,23 +10,29 @@
 	<!-- 列表 -->
 	<div class="ui-list" v-show="showInfo === 1">
 		<div class="ui-item" v-for="item in searchList">
-			<div class="ui-item__avater" style="background-image: url({{item.avater}})"></div>
-			<div class="ui-item__name">{{item.name}}</div>
+			<div class="ui-item__avater" v-if="{{item.imageUrl}}" style="background-image: url({{item.imageUrl}})"></div>
+			<div class="ui-item__avater" v-else="{{item.imageUrl}}" style="background-image: url('../../image/lecture/logo.png')"></div>
+			
 			<div class="ui-item__info">
-				<div class="ui-item__title">{{item.title}}</div>
+				<div class="ui-item__title">{{item.name}}</div>
 				<div class="ui-line">
 					<i class="ui-item__icon"></i>
-				    <div class="ui-item__content">{{item.time}}</div>
+				    <div class="ui-item__content">{{item.startTime}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-locationIcon"></i>
-				    <div class="ui-item__content">{{item.position}}</div>
+				    <div class="ui-item__content">{{item.address}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-typeIcon"></i>
-					<div class="ui-item__content">{{item.type}}</div>
+					<div class="ui-item__content">{{item.category.name}}</div>
 				</div>
-				
+				<div class="ui-line" v-if="item.speakerList">
+					<i class="ui-item__icon is-speaker"></i>
+					<div v-for="it in item.speakerList">
+					    <div class="ui-item__content">{{it.name}}</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
