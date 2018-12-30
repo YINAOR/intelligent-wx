@@ -15,7 +15,7 @@ define(function(require, exports, module) {
             sessionStorage.setItem("token", "100000-0d69b9960fbe43608f96d23d9c9b9c52");
 
             Http.ajax({
-                url: '/user/findLectureListPage.do',
+                url: 'user/findTeahouseListPage.do',
                 isAsync: false,
                 data: {
                     paging:paging
@@ -43,11 +43,8 @@ define(function(require, exports, module) {
                 }
             },
             openTeaHouseDetail(id){
-                _g.openWin({
-                    name: 'TeaHouseId',
+                api.openWin({
                     url: 'detail_frame.html',
-                    bounces: false,
-                    slidBackEnabled: false,
                     pageParam: {
                         id: id
                     }

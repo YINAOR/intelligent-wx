@@ -71,7 +71,8 @@ define(function(require, exports, module) {
             // var postData = self.fetchPostData(opts.data);
             var postData = {
                 data: $.extend(true, {}, opts.data),
-                token: opts.token || sessionStorage.getItem('token')
+                token: opts.token || sessionStorage.getItem('token'),
+                deviceCode: 1
             };
             // if(opts.lock !== false) self.lock();
             // if(opts.isSync) _g.showProgress();
