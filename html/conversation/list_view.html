@@ -6,21 +6,21 @@
 	</div>
     <div class="ui-new">
         <div class="ui-new-question">我要提问</div>
-        <div class="ui-new-item" v-for="item in allList">
-            <div class="ui-new-img"></div>
+        <div class="ui-new-item" v-for="item in allList" :key="item.id" @click="openTeaHouseDetail(this.item.id)">
+            <div class="ui-new-img">{{item.imageUrl}}</div>
             <div class="ui-new-content">
-                <div class="ui-item__title">{{item.title}}</div>
+                <div class="ui-item__title">{{item.name}}</div>
 				<div class="ui-line">
 					<i class="ui-item__icon"></i>
-				    <div class="ui-item__content">{{item.time}}</div>
+				    <div class="ui-item__content">{{item.startTime}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-locationIcon"></i>
-				    <div class="ui-item__content">{{item.position}}</div>
+				    <div class="ui-item__content">{{item.address}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-typeIcon"></i>
-					<div class="ui-item__content">{{item.type}}</div>
+					<div class="ui-item__content">{{item.category.name}}</div>
 				</div>
             </div>
         </div>
