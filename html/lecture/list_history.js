@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('lecture/list_future_view'),
+        template: _g.getTemplate('lecture/list_view'),
         data: {
             showIndex: 0,
             allList: [{
@@ -51,7 +51,7 @@ define(function(require, exports, module) {
                     if(res.code == 200){ 
                         /*this.allList.push(res.data.paging.list);
                         console.log(res.data.paging.list)
-                        _g.render('lecture/list_future_view',data,'#table');*/
+                        _g.render('lecture/list_view',data,'#table');*/
                         
                     }else {
                         var result = { list: [] };

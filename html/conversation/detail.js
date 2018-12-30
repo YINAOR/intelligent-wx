@@ -5,60 +5,83 @@ define(function (require, exports, module) {
         el: '#main',
         template: _g.getTemplate('conversation/detail_view'),
         data: {
-            name: '第九十讲毓秀讲堂----漫步人生路',
-            poster: '../../image/lecture/desert.jpg',
-            description: '汤耀平副书记将为我们剖析人生路上的点点滴滴，为大学生如何充实度过每一天提供指导，指明方向，带来人生启迪！',
-            time: '2018-06-05   19:00-21：00',
-            position: '龙洞校区行政楼二楼学术报告厅',
-            presenter: '汤耀平',
-            presenterInfo: '任广东工业大学党委副书记、纪委书记，教授，硕士生导师',
-            object: '5级-17级各班班委、入党积极分子以及预备党员、青马工程学员，等等',
-            hasApply: 0,
-            hasLike: 0,
-            likeNum: 23,
-            comment: 0,
-            commentList: [{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳的回款的恐惧阿卡卡',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！的哈慷慨激昂卡卡打卡机安检'
-            },{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！'
-            },{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！'
-            }]
+            theme: '',
+            imageUrl: '../../image/lecture/desert.jpg',
+            content: '',
+            dateStr: '',
+            startTimeStr: '',
+            endTimeStr:'',
+            address: '',
+            speakerLinkList:[],
+            groupOfPep: '',
+            limitNumOfPep: 0,
+            category: {},
+            isSignUp: 0,
+            signUpNum: 0,
         },
         ready: function() {
+            sessionStorage.setItem("deviceCode", 1);
+            sessionStorage.setItem("token","3115004205-6a7cc55dbfc14743b7b0cc20e33fe6d3");
         },
         methods: {
-            likeTap: function() {
-                main.hasLike = !main.hasLike;
-                if(main.hasLike) {
-                    main.likeNum --;
-                } else {
-                    main.likeNum ++;
-                }
-            },
-            applyTap: function() {
+            signTap: function() {
                 var apply = confirm("您确定要预报名吗");
-                if(apply == true) {
-                    main.hasApply = 1;
+
+                if(!main.isSignUp) {
+                    main.isSignUp = !main.isSignUp;
+                    main.SignUpNum ++;
+                    Http.ajax({
+                        url: "/student/teahouseAppointment.do",
+                        isAsync: false,
+                        data: {
+                            
+                        },
+                        success: function(res){
+                            console.log(res) //添加提示
+                        }
+                    })
                 }
-            },
-            changeCommentTap: function() {
-                main.comment = 1;
-            },
-            reportTap: function() {
-                main.comment = 0;
             }
         }
     });
+
+    var _page = {
+        getDetail:  function() {
+
+            Http.ajax({
+                url: "user/queryTeahouseDetail.do",
+                async: false,
+                data: {
+
+                    id: 1 //模拟而已
+                },
+                success: function(res){
+                    if(res.code == 200){ 
+                        console.log(res)
+                        var data1 = res.data.teahouse;
+                        console.log(data1)
+                        main.theme = data1.theme; //讲座名字
+
+                        main.speakerLinkList = data1.speakerLinkList;
+
+                        main.content = data1.content; //讲座简介
+                        main.dateStr = data1.dateStr; //日期
+                        main.startTimeStr = data1.startTimeStr; //开始时间
+                        main.endTimeStr = data1.endTimeStr; //结束时间
+                        main.address = data1.address; //地点
+                        main.groupOfPep = data1.groupOfPep; //面向对象
+                        main.limitNumOfPep = data1.limitNumOfPep; //限制人数
+                        main.signUpNum = data1.signUpNum; //签到人数                        
+                        main.category = data1.category; //讲座类别
+
+                        main.isSignUp = data1.isSignUp; //是否预报名
+                    }
+                }
+            })
+        }
+    }
+        
+    _page.getDetail();
     
     module.exports = {};
 })

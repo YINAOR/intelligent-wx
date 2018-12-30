@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('lecture/list_future_view'),
+        template: _g.getTemplate('lecture/list_view'),
         data: {
             showIndex: 0,
             allList: [],
@@ -41,7 +41,7 @@ define(function(require, exports, module) {
             searchTap: function() {
                 _g.openWin({
                     name: 'lecture-search',
-                    url: '../lecture/search_frame.html ',
+                    url: 'search_frame.html',
                     bounces: false,
                     slidBackEnabled: false,
                     animation: { type: 'none' }
@@ -55,13 +55,17 @@ define(function(require, exports, module) {
                     main.showIndex = 1;
                 }
             },
-            queryldetail: function(id){
-                //获取id，
-                
-                
-                //跳转页面,携带id
-            },
-            
+            openLectureDetail(id){
+                _g.openWin({
+                    name: 'lectureId',
+                    url: 'detail_frame.html',
+                    bounces: false,
+                    slidBackEnabled: false,
+                    pageParam: {
+                        id: id
+                    }
+                })
+            }
         }
     });
 

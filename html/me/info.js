@@ -6,53 +6,23 @@ define(function (require, exports, module) {
         template: _g.getTemplate('me/info_view'),
         data: {
             userAvter: '../../image/main/user-unlogin.png',
-            userName: '哈萨克',
-            studentId: '3215004210',
-            major: '信息管理与信息系统',
-            college: '管理学院',
+            name: '',
+            studentId: '',
+            college: '',
+            major: '',
             lectureNum: 10,
             messageNum: 3,
         },
         ready: function() {
+            var student = JSON.parse(sessionStorage.student);
+            main.name = student.name;
+            main.studentId = student.num;
+            main.college = student.college.name;
+            main.major = student.major.name;
         },
         methods: {
-            toDetail: function() {
-        //                 $.ajax({
-        //     url: "http://120.77.204.252:80/admin/login.do",
-        //     type: 'post',
-        //     data: JSON.stringify({data: {
-        //         account: '100000',
-        //         password: '13456',
-        //         seccode: 'seccode'
-        //     }}),
-        //     dataType:"json",
-        //     contentType: 'application/json', //'application/x-www-form-urlencoded'
-        //     processData: false, //!== false,
-        //     success: function (result) {
-        //         console.log(result)
-                
-        //     }
-        // })
 
-                // _g.openWin({
-                //     name: 'basicInfo',
-                //     url: '../me/basicInfo_frame.html'
-                // })
-                Http.ajax({
-                    url: 'admin/login.do',
-                    data: {
-                        account: '100000',
-                        password: '13456',
-                        seccode: 'seccode'
-                    },
-                    success: function(result) {
-                        console.log(1111)
-                    },
-                    error: function(error) {
-                        console.log(2222)
-                    }
-                })
-            }
+
         }
     });
     

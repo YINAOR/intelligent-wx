@@ -6,14 +6,24 @@ define(function (require, exports, module) {
         template: _g.getTemplate('me/basicInfo_view'),
         data: {
             avatar: '../../image/me/img-avatar.jpeg',
-            name: '哈萨克',
-            studentId: '3215004210',
-            major: '信息管理与信息系统',
-            college: '管理学院',
-            phone: '13899732898',
-            email: '7339829@qq.com',
+            name: '',
+            studentId: '',
+            college: '',
+            major: '',
+            classNum:'',
+            mobile: '',
+            email: '',
         },
         ready: function() {
+            var student = JSON.parse(sessionStorage.student);
+            main.name = student.name;
+            main.studentId = student.num;
+            main.college = student.college.name;
+            main.major = student.major.name;
+            main.classNum = student.classNum;
+            main.mobile = student.mobile;
+            main.email = student.email;
+
             var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
             $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
             $uploaderInput = $("#uploaderInput"),
@@ -41,6 +51,38 @@ define(function (require, exports, module) {
             $gallery.on("click", function(){
                 $gallery.fadeOut(100);
             });
+        },
+        methods: {
+            save: function(){
+                var studentUpdata = {num:main.num};//更新信息对象
+                var mobile = $("mobile").val();
+                var email = $("mobile").val();
+                if(mobile != null){
+                    studentUpdata[mobile] = mobile; //如果不为空则添加
+                }
+                if(email != null){
+                    studentUpdata[email] = email;
+                }
+
+                Http.ajax({
+                    url: "student/updateProfile.do",
+                    async: false,
+                    data: {
+                        student:studentUpdata
+                    },
+                    success: function(res){
+                        console.log('success')
+                        console.log(res)
+                        _g.openWin({
+                            name:"info",
+                            url:"info_frame.html"
+                        })
+                    },
+                    error: function(res){
+                        console.log(res)
+                    }
+                })
+            }
         },
     });
     

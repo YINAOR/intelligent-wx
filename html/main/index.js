@@ -7,9 +7,9 @@ define(function (require, exports, module) {
         data: {
             userAvter: '../../image/main/user-unlogin.png',
             userName: 'Y.yin',
-            registration: 1,
-            lectureRecord: 32,
-            conversationRecord: 21,
+            registration: 0,
+            lectureRecord: 0,
+            conversationRecord: 0,
             indexList: [{
                 icon: '../../image/main/lecture1.png',
                 title: '讲座',

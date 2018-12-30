@@ -17,10 +17,10 @@
 	<div class="ui-line"><em>讲座类别： </em>{{category.name}}</div>
     <div class="ui-interaction">
 		<div class="ui-likeNum">报名人数：{{signUpNum}}</div>
-    	<i class="ui-like" v-bind:class="hasLike ? 'is-like' : ''" v-touch:tap="likeTap"></i>
+    	<i class="ui-like" v-bind:class="isThumbsUp ? '' : 'is-like'" v-touch:tap="thumbsTap"></i>
     	<div class="ui-likeNum">{{thumbsUpNum}}</div>
     </div> 
-    <div class="ui-btn" v-bind:class="hasApply ?'is-grey' : ''" v-touch:tap="applyTap">讲座预报名</div>
+    <div class="ui-btn" v-bind:class="isSignUp ?'is-grey' : ''" v-touch:tap="signTap">讲座预报名</div>
     </div>
     <div class="ui-comment" v-show="comment === 0">
         <div class="ui-comment__btn" v-touch:tap="changeCommentTap">我来说一句</div>
@@ -38,6 +38,9 @@
     </div>
     
     <div class="ui-commentList">
+        <div class="ui-commentItem" v-show="!commentList">
+            <div style="height:200px;color:black;font-size:30px">暂无记录</div>
+        </div>
         <div class="ui-commentItem" v-for="item in commentList">
             <div class="ui-commentItem__info">
                 <div class="ui-commentItem__avatar" style="background-image: url({{item.avatar}})"></div>

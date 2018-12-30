@@ -1,10 +1,6 @@
 define(function(require, exports, module) {
     var Http = require('U/http');
-
-    var url = 'http://127.0.0.1/user/findLectureListPage.do';
-    var currentPage = 1;
-    var showCount = 5;
-    var totalPage = 0;
+    
 
     var main = new Vue({
         el: '#main',
@@ -75,34 +71,25 @@ define(function(require, exports, module) {
             }],
         },
         ready: function() {
-            var paging = {"currentPage": currentPage,"showCount": showCount};
+
+            var that = this;
+            var paging = {"currentPage": 1,"showCount": 5};
+            sessionStorage.setItem("token", "100000-0d69b9960fbe43608f96d23d9c9b9c52");
 
             Http.ajax({
-                lock: true,
-                url: url,
+                url: '/user/findLectureListPage.do',
                 isAsync: false,
                 data: {
-                    paging: paging
+                    paging:paging
                 },
                 success: function(res){
-                    if(res.code == 200){ //保存个totalPage
-                       /*pc端的代码 if(result.data.paging) {
-                    var data1 = { list: result.data.paging.list };
-                    _g.initPaginator({
-                        currentPage: result.data.paging.currentPage,
-                        totalPages: result.data.paging.totalPage,
-                        totalCount: result.data.paging.totalResult,
-                        onPageClicked: function(page) {
-                            console.log(page)
-                            data.currentPage = page;
-                            getList();
-                        }
-                    });
-                    _g.render('lecture/list-V', data1, '#table');
-                    } else {
-                        var result = { list: [] };
-                        _g.render('lecture/list-V', result, '#table');
-                    }*/
+                    if(res.code == 200){
+                        console.log(res.data.paging.list)
+                        that.allList = res.data.paging.list;
+                        console.log(that.allList)
+                        
+                    }else {
+                        
                     }
                 }
             })
