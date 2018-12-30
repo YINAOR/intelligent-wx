@@ -6,8 +6,13 @@
 	</div>
     <div class="ui-new">
         <div class="ui-new-future">历史讲座</div>
+<<<<<<< HEAD
         <div class="ui-new-item" v-for="item in allList" :key="item.id" @click="openLectureDetail(this.item.id)" id="table">
             <div class="ui-new-img">{{item.imageUrl}}</div>
+=======
+        <div class="ui-new-item" v-for="item in allList" :key="item.id" @click="openLectureDetail(this.item.id)">
+            <div class="ui-new-img"></div>
+>>>>>>> 0a63c1a8ad900b6068790789760288c435be6f4d
             <div class="ui-new-content">
                 <div class="ui-item__title">{{item.name}}</div>
 				<div class="ui-line">
@@ -24,6 +29,6 @@
 				</div>
             </div>
         </div>
-        <div class="ui-new-more">加载更多</div>
+        <!-- <div class="ui-new-more">加载更多</div> -->
     </div>
 </div>
