@@ -56,15 +56,12 @@ define(function(require, exports, module) {
                 }
             },
             openLectureDetail(id){
-                _g.openWin({
-                    name: 'lectureId',
+                api.openWin({
                     url: 'detail_frame.html',
-                    bounces: false,
-                    slidBackEnabled: false,
                     pageParam: {
                         id: id
                     }
-                })
+                });
             }
         }
     });
