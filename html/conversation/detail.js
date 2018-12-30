@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
     var Http = require('U/http');
-    var id= api.pageParam.id;
+    var id = api.pageParam.id;
     console.log(id)
 
     var main = new Vue({
@@ -27,42 +27,40 @@ define(function(require, exports, module) {
         },
         methods: {
             signTap: function() {
-                layer.open({
-                    title: [
-                        '请输入预约说明',
-                        'background-color:#1E9FFF; color:#fff; font-size: 18px;'
-                    ],
-                    anim: 'up',
-                    content: '<input type="text" id="values" style="display:block;width:230px;height:36px;line-height:36px;margin:0 auto;padding-left: 30px; border: 1px solid #e6e6e6; color: #333;">',
-                    btn: ['确认', '取消'],
-                    yes: function(index){
-                        console.log(123)
-                        console.log($('#values').val())
-                        layer.close(index)
-                    }   
-                });
-                var reason = $('#values').val();
-
                 if (!main.isSignUp) {
-                    main.isSignUp = !main.isSignUp;
-                    main.SignUpNum++;
-                    Http.ajax({
-                        url: "/student/teahouseAppointment.do",
-                        isAsync: false,
-                        data: {
-                            Appointment:{
-                                Teahouse:{
-                                    id:id,
-                                    reason:reason
+                    layer.open({
+                        title: [
+                            '请输入预约说明',
+                            'background-color:#1E9FFF; color:#fff; font-size: 18px;'
+                        ],
+                        anim: 'up',
+                        content: '<input type="text" id="values" style="display:block;width:230px;height:36px;line-height:36px;margin:0 auto;padding-left: 30px; border: 1px solid #e6e6e6; color: #333;">',
+                        btn: ['确认', '取消'],
+                        yes: function(index) {
+                            var reason = $('#values').val();
+                            main.isSignUp = !main.isSignUp;
+                            main.SignUpNum++;
+                            Http.ajax({
+                                url: "/student/teahouseAppointment.do",
+                                isAsync: false,
+                                data: {
+                                    Appointment: {
+                                        Teahouse: {
+                                            id: id,
+                                            reason: reason
+                                        }
+                                    }
+                                },
+                                success: function(res) {
+                                    console.log(res) //添加提示
                                 }
-                            }
-                        },
-                        success: function(res) {
-                            console.log(res) //添加提示
+                            })
+                            layer.close(index)
                         }
-                    })
+                    });
+
                 }
-                
+
             }
         }
     });
@@ -99,6 +97,12 @@ define(function(require, exports, module) {
                     }
                 }
             })
+<<<<<<< HEAD
+=======
+        },
+        openFrame: function() {
+
+>>>>>>> f0a65077d3df9f963f3f55a85b55e7d72cc37012
         }
         
     }
