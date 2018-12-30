@@ -27,6 +27,22 @@ define(function(require, exports, module) {
         },
         methods: {
             signTap: function() {
+                layer.open({
+                    title: [
+                        '请输入预约说明',
+                        'background-color:#1E9FFF; color:#fff; font-size: 18px;'
+                    ],
+                    anim: 'up',
+                    content: '<input type="text" id="values" style="display:block;width:230px;height:36px;line-height:36px;margin:0 auto;padding-left: 30px; border: 1px solid #e6e6e6; color: #333;">',
+                    btn: ['确认', '取消'],
+                    yes: function(index){
+                        console.log(123)
+                        console.log($('#values').val())
+                        layer.close(index)
+                    }   
+                });
+                var reason = $('#values').val();
+
                 if (!main.isSignUp) {
                     main.isSignUp = !main.isSignUp;
                     main.SignUpNum++;
@@ -34,13 +50,19 @@ define(function(require, exports, module) {
                         url: "/student/teahouseAppointment.do",
                         isAsync: false,
                         data: {
-
+                            Appointment:{
+                                Teahouse:{
+                                    id:id,
+                                    reason:reason
+                                }
+                            }
                         },
                         success: function(res) {
                             console.log(res) //添加提示
                         }
                     })
                 }
+                
             }
         }
     });
@@ -79,23 +101,11 @@ define(function(require, exports, module) {
             })
         },
         openFrame: function() {
-            layer.open({
-                title: [
-                    '请输入预约说明',
-                    'background-color:#1E9FFF; color:#fff; font-size: 18px;'
-                ],
-                anim: 'up',
-                content: '<input type="text" id="values" style="display:block;width:230px;height:36px;line-height:36px;margin:0 auto;padding-left: 30px; border: 1px solid #e6e6e6; color: #333;">',
-                btn: ['确认', '取消'],
-                yes: function(index){
-                   alert($('#values').val())
-                   layer.close(index)
-                }    
-            });
+            
         }
     }
 
-_page.openFrame();
+    _page.openFrame();
 
     _page.getDetail();
 
