@@ -1,7 +1,7 @@
 define(function (require, exports, module) {
     var Http = require('U/http');
-    var id = api.pageParam.id;
-    
+    var id= api.pageParam.id;
+    console.log(id)
 
     var main = new Vue({
         el: '#main',
