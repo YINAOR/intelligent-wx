@@ -57,7 +57,7 @@ define(function(require, exports, module) {
                 },
                 success: function(res){
                     if(res.code == 200){
-                        if(res.data.paging.list.length > 0) {
+                        if(res.data.paging.list) {
                             console.log(res.data.paging.list)
                             main.allList = main.allList.concat(res.data.paging.list);
                             console.log(main.allList)
@@ -70,14 +70,14 @@ define(function(require, exports, module) {
                         
                     }
                 }
-            })
+            }) 
         }
     }
 
     _page.getData();
 
     _g.setLoadmore({
-        threshold: 200
+        threshold: 100
     }, function () {
         if (!window.isNoMore) {
             main.paging.currentPage++;
