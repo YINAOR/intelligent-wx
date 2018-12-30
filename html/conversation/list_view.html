@@ -7,7 +7,7 @@
     <div class="ui-new">
         <div class="ui-new-question">我要提问</div>
         <div class="ui-new-item" v-for="item in allList" :key="item.id" @click="openTeaHouseDetail(this.item.id)">
-            <div class="ui-new-img">{{item.imageUrl}}</div>
+            <div class="ui-new-img" style="background-image: url({{imageUrl}})"></div>
             <div class="ui-new-content">
                 <div class="ui-item__title">{{item.name}}</div>
 				<div class="ui-line">
