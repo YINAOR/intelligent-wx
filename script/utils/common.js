@@ -529,8 +529,8 @@
                 name: 'scrolltobottom',
                 extra: extra
             }, function(ret, err) {
-                if (window.isNoMore || window.isLoading) return;
-                window.isLoading = true;
+                if (window.isNoMore) return;
+                // window.isLoading = true;
                 callback && callback();
             });
         },

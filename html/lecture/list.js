@@ -8,34 +8,14 @@ define(function(require, exports, module) {
         data: {
             showIndex: 0,
             allList: [],
-            
+            paging: {
+                currentPage: 1,
+                showCount: 5
+            }
         },
-        created() {
-            
+        created() {      
         },
         ready: function() {
-            var that = this;
-            var paging = {"currentPage": 1,"showCount": 5};
-            sessionStorage.setItem("token", "100000-0d69b9960fbe43608f96d23d9c9b9c52");
-
-            Http.ajax({
-                url: '/user/findLectureListPage.do',
-                isAsync: false,
-                data: {
-                    paging:paging
-                },
-                success: function(res){
-                    if(res.code == 200){
-                        console.log(res.data.paging.list)
-                        that.allList = res.data.paging.list;
-                        console.log(that.allList)
-                        
-                    }else {
-                        
-                    }
-                }
-            })
-
         },
         methods: {
             searchTap: function() {
@@ -63,6 +43,45 @@ define(function(require, exports, module) {
                     }
                 });
             }
+        }
+    });
+
+    var _page = {
+        getData: function() {
+            sessionStorage.setItem("token", "100000-0d69b9960fbe43608f96d23d9c9b9c52");
+            Http.ajax({
+                url: '/user/findLectureListPage.do',
+                isAsync: false,
+                data: {
+                    paging:main.paging
+                },
+                success: function(res){
+                    if(res.code == 200){
+                        if(res.data.paging.list.length > 0) {
+                            console.log(res.data.paging.list)
+                            main.allList = main.allList.concat(res.data.paging.list);
+                            console.log(main.allList)
+                        } else {
+                            window.isNoMore = true;
+                        }
+                        
+                        
+                    }else {
+                        
+                    }
+                }
+            })
+        }
+    }
+
+    _page.getData();
+
+    _g.setLoadmore({
+        threshold: 200
+    }, function () {
+        if (!window.isNoMore) {
+            main.paging.currentPage++;
+            _page.getData();
         }
     });
 
