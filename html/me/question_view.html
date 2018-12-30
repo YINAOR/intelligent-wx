@@ -3,8 +3,8 @@
     <div class="weui-cells weui-cells_form">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
-                <div class="weui-textarea-counter"><span>0</span>/200</div>
+                <textarea id="questionContent" class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+                <div class="weui-textarea-counter">限200字</div>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
     <div class="weui-cells">
         <div class="weui-cell weui-cell_select">
             <div class="weui-cell__bd">
-                <select class="weui-select" name="select1">
+                <select id="questionCategory" class="weui-select" name="select1">
                     <option selected="" value="1">学习</option>
                     <option value="2">生活</option>
                     <option value="3">其他</option>
@@ -28,6 +28,6 @@
     </label> <!--间距而已-->
 
     <div class="weui-btn-area">
-        <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
+        <a class="weui-btn weui-btn_primary" href="javascript:" @click="handUp">确定</a>
     </div>
 </div>

@@ -99,13 +99,9 @@ define(function(require, exports, module) {
                     }
                 }
             })
-        },
-        openFrame: function() {
-            
         }
+        
     }
-
-    _page.openFrame();
 
     _page.getDetail();
 

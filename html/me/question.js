@@ -19,12 +19,27 @@ define(function (require, exports, module) {
         ready: function() {
         },
         methods: {
-            selectTap: function(index) {
-                _.each(main.typeList,function(item,ind) {
-                    if(ind == index){
-                        item.select = 1;
-                    } else {
-                        item.select = 0;
+            handUp: function(){
+                var questionContent = $('#questionContent').val();
+                var questionCategory = $('#questionCategory').val();
+
+                Http.ajax({
+                    url: "/student/saveQuestion.do",
+                    async: false,
+                    data: {
+                        AnswersAndQuestions:{
+                            question: questionContent,
+                            category: {
+                                id: questionCategory
+                            }
+                        }
+                    },
+                    success:function(res){
+                        console.log(res)
+                        //提示提交成功
+                    },
+                    error:function(res){
+                        console.log(res)
                     }
                 })
             }
