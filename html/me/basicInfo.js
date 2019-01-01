@@ -16,13 +16,14 @@ define(function (require, exports, module) {
         },
         ready: function() {
             var student = JSON.parse(sessionStorage.student);
-            main.name = student.name;
-            main.studentId = student.num;
-            main.college = student.college.name;
-            main.major = student.major.name;
-            main.classNum = student.classNum;
-            main.mobile = student.mobile;
-            main.email = student.email;
+            console.log(student)
+            this.name = student.name;
+            this.studentId = student.num;
+            this.college = student.college.name;
+            this.major = student.major.name;
+            this.classNum = student.classNum;
+            this.mobile = student.mobile;
+            this.email = student.email;
 
             var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
             $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),

@@ -12,13 +12,17 @@ define(function (require, exports, module) {
             major: '',
             lectureNum: 10,
             messageNum: 3,
+            student:{}
         },
         ready: function() {
             var student = JSON.parse(sessionStorage.student);
-            main.name = student.name;
-            main.studentId = student.num;
-            main.college = student.college.name;
-            main.major = student.major.name;
+            console.log(student)
+            //this.userAvter = student.avatar;
+            this.name = student.name;
+            this.studentId = student.num;
+            this.college = student.college.name;
+            this.major = student.major.name;
+
         },
         methods: {
 

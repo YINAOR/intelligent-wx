@@ -32,7 +32,7 @@ define(function (require, exports, module) {
                         var student = JSON.stringify(res.data.student);
                         sessionStorage.setItem("student",student);
 
-                        _g.openWin({
+                        api.openWin({
                             url: "index_frame.html"
                         })
                     },

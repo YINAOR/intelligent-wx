@@ -28,15 +28,39 @@ define(function (require, exports, module) {
 
                     },
                     success: function(res){
-                        console.log('success')
                         console.log(res)
+                        if(res.msg == "绑定成功！"){
+                            //消息提示
+                            Http.ajax({
+                                url: "student/login.do",
+                                async: false,
+                                data: {
+                                        num:num,
+                                        password:password
+                                },
+                                success: function(res){
+                                    console.log('success')
+                                    console.log(res)
+                                    sessionStorage.setItem("token",res.data.token);
+                                                           
+                                    var student = JSON.stringify(res.data.student);
+                                    sessionStorage.setItem("student",student);
+            
+                                    api.openWin({
+                                        url: "index_frame.html"
+                                    })
+                                },
+                                error: function(res){
+                                    console.log(res)
+                                } 
+                            })
+                        }else{
+                            //提示解绑成功
+                        }
 
-
-                        _g.openWin({
-                            url: "index_frame.html"
-                        })
                     },
                     error: function(res){
+                        
                         console.log(res)
                     } 
                 })
