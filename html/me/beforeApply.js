@@ -19,8 +19,10 @@ define(function(require, exports, module) {
                         paging: paging
                     },
                     success: function(res){
-                        console.log(res)
-                        main.lectureList = res.data.paging.list;
+                        if(res.data.paging) {
+                            console.log(res)
+                            main.lectureList = res.data.paging.list;
+                        }
                     },
                     error: function(res){
                         console.log(res)
