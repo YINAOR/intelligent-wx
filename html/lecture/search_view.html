@@ -9,7 +9,7 @@
 	</div>
 	<!-- 列表 -->
 	<div class="ui-list" v-show="showInfo === 1">
-		<div class="ui-item" v-for="item in searchList">
+		<div class="ui-item" v-for="item in searchList" :key="item.id" @click="openLectureDetail(this.item.id)">
 			<div class="ui-item__avater" v-if="{{item.imageUrl}}" style="background-image: url({{item.imageUrl}})"></div>
 			<div class="ui-item__avater" v-else="{{item.imageUrl}}" style="background-image: url('../../image/lecture/logo.png')"></div>
 			

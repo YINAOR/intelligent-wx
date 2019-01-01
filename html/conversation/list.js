@@ -12,7 +12,6 @@ define(function(require, exports, module) {
         ready: function() {
             var that = this;
             var paging = {"currentPage": 1,"showCount": 5};
-            sessionStorage.setItem("token", "100000-0d69b9960fbe43608f96d23d9c9b9c52");
 
             Http.ajax({
                 url: 'user/findTeahouseListPage.do',

@@ -4,6 +4,7 @@
 		<div class="ui-top__title">讲座列表</div>
 		<i class="ui-top__search" v-touch:tap="searchTap"></i>
 	</div>
+	<!--
     <div class="ui-new">
         <div class="ui-new-future">历史讲座</div>
         <div class="ui-new-item" v-for="item in allList" :key="item.id" @click="openLectureDetail(this.item.id)" id="table">
@@ -24,6 +25,29 @@
 				</div>
             </div>
         </div>
-        <!-- <div class="ui-new-more">加载更多</div> -->
-    </div>
+
+    </div>-->
+
+	<div class="ui-list" style="margin-top:60px;">
+		<div class="ui-item" v-for="item in allList" :key="item.id" @click="openLectureDetail(this.item.id)" id="table">
+			<div class="ui-item__avater" style="background-image: url({{item.imageUrl}})"></div>
+			<div class="ui-item__name">{{item.category.name}}</div>
+			<div class="ui-item__info">
+				<div class="ui-item__title">{{item.name}}</div>
+				<div class="ui-line">
+					<i class="ui-item__icon"></i>
+				    <div class="ui-item__content">{{item.startTime}}</div>
+				</div>
+				<div class="ui-line">
+					<i class="ui-item__icon is-locationIcon"></i>
+				    <div class="ui-item__content">{{item.address}}</div>
+				</div>
+				<div class="ui-line">
+					<i class="ui-item__icon is-typeIcon"></i>
+					<div class="ui-item__content">{{item.category.name}}</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+
 </div>

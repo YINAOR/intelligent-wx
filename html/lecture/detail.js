@@ -45,8 +45,7 @@ define(function (require, exports, module) {
             totalResult:0, //评论总记录数
         },
         ready: function() {
-
-            sessionStorage.setItem("token", "100000-0d69b9960fbe43608f96d23d9c9b9c52");
+            
         },
         methods: {
             thumbsTap: function() {
@@ -102,12 +101,13 @@ define(function (require, exports, module) {
                         async: false,
                         data: {
                             lectureComment:{
-                                id:id, //模拟
+                                id:id, 
                                 commentContent: commentContent,
                             }
                         },
                         success: function(res){
                             console.log(res)
+                            _page.getReport();
                         }
                     })
                 }
@@ -153,30 +153,36 @@ define(function (require, exports, module) {
                         main.isSignUp = data1.isSignUp; //是否预报名
                         main.isThumbsUp = data1.isThumbsUp; //是否点赞
 
-                        Http.ajax({
-                            url: "user/findCommentByLectureId.do",
-                            async: false,
-                            data: {
-                                paging:{
-                                    currentPage:1,
-                                    showCount:5
-                                } //模拟而已
-                            },
-                            success: function(res){ //有错
-                                console.log(res)
-                                if(res.data){
-                                    main.commentList = null;
-
-                                }else{
-                                    main.commentList = res.data.paging.list; 
-                                    main.totalResult = res.data.paging.totalResult;
-                                }
-                            },
-                            error: function(res){
-                                console.log(res)
-                            }
-                        })
+                        
                     }
+                }
+            })
+        },
+
+        getReport: function(){
+            Http.ajax({
+                url: "user/findCommentByLectureId.do",
+                async: false,
+                data: {
+                    paging:{
+                        currentPage:1,
+                        showCount:5
+                    } //模拟而已
+                },
+                success: function(res){ //有错
+                    console.log("report")
+                    console.log(res)
+                    if(res.data){
+                        main.commentList = res.data.paging.list; 
+                        main.totalResult = res.data.paging.totalResult;
+
+                    }else{
+                        
+                        main.commentList = null;
+                    }
+                },
+                error: function(res){
+                    console.log(res)
                 }
             })
         }
@@ -185,6 +191,8 @@ define(function (require, exports, module) {
 
 
     _page.getDetail();
+
+    _page.getReport();
     
     
     module.exports = {};

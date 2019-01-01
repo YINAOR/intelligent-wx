@@ -48,7 +48,6 @@ define(function(require, exports, module) {
 
     var _page = {
         getData: function() {
-            sessionStorage.setItem("token", "100000-0d69b9960fbe43608f96d23d9c9b9c52");
             Http.ajax({
                 url: '/user/findLectureListPage.do',
                 isAsync: false,

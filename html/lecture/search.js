@@ -28,6 +28,7 @@ define(function(require, exports, module) {
                     },
                     success: function(res) {
                         if (res.code == 200) {
+                            console.log(res)
                             if(res.data.paging.currentPage > 1) {
                                 if (res.data.paging.list.length > 0) {
                                     main.searchList = main.searchList.concat(res.data.paging.list);
@@ -48,6 +49,14 @@ define(function(require, exports, module) {
                     }
                 })
                 
+            },
+            openLectureDetail: function(id){
+                api.openWin({
+                    url: 'detail_frame.html',
+                    pageParam: {
+                        id: id
+                    }
+                });
             }
         }
     });

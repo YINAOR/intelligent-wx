@@ -22,8 +22,6 @@ define(function(require, exports, module) {
             signUpNum: 0,
         },
         ready: function() {
-            sessionStorage.setItem("deviceCode", 1);
-            sessionStorage.setItem("token", "3115004205-6a7cc55dbfc14743b7b0cc20e33fe6d3");
         },
         methods: {
             signTap: function() {
@@ -97,14 +95,8 @@ define(function(require, exports, module) {
                     }
                 }
             })
-<<<<<<< HEAD
-=======
-        },
-        openFrame: function() {
-
->>>>>>> f0a65077d3df9f963f3f55a85b55e7d72cc37012
         }
-        
+
     }
 
     _page.getDetail();

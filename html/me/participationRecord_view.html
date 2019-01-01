@@ -33,7 +33,7 @@
 		<div class="ui-item" v-for="item in conversationList" :key="item.Teahouse.id" @click="openTeaHouseDetail(this.item.Teahouse.id)">
 
             <div class="ui-item__avater" style="background-image: url({{item.Appointment.Teahouse.imageUrl}})"></div>
-            <div class="ui-item__name">{{item.Appointment.Teahouse.speakerLinkList.name}}</div>
+            <div class="ui-item__name">{{item.Appointment.Teahouse.status}}</div>
 
 			<div class="ui-item__info">
 				<div class="ui-item__title">{{item.Appointment.Teahouse.name}}</div>
