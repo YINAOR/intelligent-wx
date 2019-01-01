@@ -48,6 +48,15 @@ define(function(require, exports, module) {
                         id: id
                     }
                 })
+            },
+            searchTap: function() {
+                _g.openWin({
+                    name: 'lecture-search',
+                    url: 'search_frame.html',
+                    bounces: false,
+                    slidBackEnabled: false,
+                    animation: { type: 'none' }
+                });
             }
         }
     });

@@ -2,7 +2,7 @@
 	<div class="ui-top">
 		<i class="ui-top__left"></i>
 		<div class="ui-top__title">参与记录</div>
-		<i class="ui-top__search" v-touch:tap="searchTap"></i>
+		<!-- <i class="ui-top__search" v-touch:tap="searchTap"></i> -->
 	</div>
 	<div class="ui-tap">
 		<div class="ui-tap__tap" v-bind:class="showIndex === 0 ? 'is-change': ''" v-touch:tap="changeTap(0)">讲座</div>
@@ -52,5 +52,9 @@
 				
 			</div>
 		</div>
+	</div>
+	<div class="ui-noInfo" v-show="showInfo === 3">
+		<i></i>
+		<div class="ui-noInfo__message">暂无结果</div>
 	</div>
 </div>
