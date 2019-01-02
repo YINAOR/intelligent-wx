@@ -27,20 +27,28 @@ define(function (require, exports, module) {
                     success: function(res){
                         console.log('success')
                         console.log(res)
-                        sessionStorage.setItem("token",res.data.token);
+                        if(res.code == 200){
+                            sessionStorage.setItem("token",res.data.token);
                                                
-                        var student = JSON.stringify(res.data.student);
-                        sessionStorage.setItem("student",student);
-
-                        layer.open({
-                            content: '登录成功！',
-                            skin: 'msg',
-                            time: 1
-                        })
-
-                        setTimeout(function(){api.openWin({
-                            url: "index_frame.html"
-                        })},1000)
+                            var student = JSON.stringify(res.data.student);
+                            sessionStorage.setItem("student",student);
+    
+                            layer.open({
+                                content: '登录成功！',
+                                skin: 'msg',
+                                time: 1
+                            })
+    
+                            setTimeout(function(){api.openWin({
+                                url: "index_frame.html"
+                            })},1000)
+                        }else if(res.code == 403){
+                            layer.open({
+                                content: '账号不存在或密码错误！',
+                                skin: 'msg',
+                                time: 1
+                            })
+                        }
                     },
                     error: function(res){
                         console.log(res)

@@ -54,22 +54,38 @@ define(function(require, exports, module) {
 
             },
             signTap: function() {
-
                 if (!main.isSignUp) {
-                    main.isSignUp = !main.isSignUp;
-                    main.SignUpNum++;
-                    Http.ajax({
-                        url: "/student/lectureSignUp.do",
-                        isAsync: false,
-                        data: {
-                            lectureId: id,
-                        },
-                        success: function(res) {
-                            layer.open({
-                                content: '预报名成功！',
-                                skin: 'msg',
-                                time: 1
-                            })
+                    layer.open({
+                        content: '确定要预报名吗？',
+                        btn: ['确定', '取消'],
+                        yes: function(index) {
+                            Http.ajax({
+                                url: "/student/lectureSignUp.do",
+                                isAsync: false,
+                                data: {
+                                    lectureId: id,
+                                },
+                                success: function(res) {
+                                    console.log(res)
+                                    if (res.code == 200) {
+                                        layer.open({
+                                            content: '预报名成功！',
+                                            skin: 'msg',
+                                            time: 1
+                                        })
+                                        main.isSignUp = !main.isSignUp;
+                                        main.SignUpNum++;
+                                    } else {
+                                        layer.open({
+                                            content: '预报名失败！',
+                                            skin: 'msg',
+                                            time: 1
+                                        })
+                                    }
+                                }
+                            });
+
+                            layer.close(index)
                         }
                     })
                 }
@@ -103,13 +119,19 @@ define(function(require, exports, module) {
                                 _page.getReport();
                             } else {
                                 layer.open({
-                                    content: res.msg,
+                                    content: '留言失败！',
                                     skin: 'msg',
                                     time: 2
                                 })
                             }
-
                         }
+                    })
+                } else {
+                    main.comment = 0;
+                    layer.open({
+                        content: '请输入内容！',
+                        skin: 'msg',
+                        time: 2
                     })
                 }
             }
@@ -122,7 +144,6 @@ define(function(require, exports, module) {
                 url: "user/queryLectureDetail.do",
                 async: false,
                 data: {
-
                     id: id
                 },
                 success: function(res) {
@@ -172,17 +193,20 @@ define(function(require, exports, module) {
                     }
                 },
                 success: function(res) { //有错
-                    if (res.data.paging) {
-                        if(res.data.paging.list) {
-                            main.commentList = main.commentList.concat(res.data.paging.list);
-                            main.totalResult = res.data.paging.totalResult;
+                    if (res.code == 200) {
+                        if (res.data.paging) {
+                            if (res.data.paging.list) {
+                                main.commentList = main.commentList.concat(res.data.paging.list);
+                                main.totalResult = res.data.paging.totalResult;
+                            } else {
+                                window.isNoMore = true;
+                            }
+
                         } else {
                             window.isNoMore = true;
                         }
-                        
-                    } else {
-                        window.isNoMore = true;
                     }
+
                 },
                 error: function(res) {
                     console.log(res)
