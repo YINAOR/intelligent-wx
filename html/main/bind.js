@@ -45,17 +45,29 @@ define(function (require, exports, module) {
                                                            
                                     var student = JSON.stringify(res.data.student);
                                     sessionStorage.setItem("student",student);
-            
-                                    api.openWin({
-                                        url: "index_frame.html"
+
+                                    layer.open({
+                                        content: '绑定成功！',
+                                        skin: 'msg',
+                                        time: 1
                                     })
+
+                                    setTimeout(function(){api.openWin({
+                                        url: "index_frame.html"
+                                    })},1000)
+            
+                                    
                                 },
                                 error: function(res){
                                     console.log(res)
                                 } 
                             })
-                        }else{
-                            //提示解绑成功
+                        }else if(res.msg == "解绑成功！"){
+                            layer.open({
+                                content: '解绑成功！',
+                                skin: 'msg',
+                                time: 2
+                            })
                         }
 
                     },

@@ -57,11 +57,10 @@ define(function (require, exports, module) {
                         url: "/student/lectureThumbsup.do",
                         isAsync: false,
                         data: {
-                            deviceCode:1,
-                            lectureId: 1, //模拟而已
+                            lectureId: id, 
                         },
                         success: function(res){
-                            console.log(res) //添加提示
+                            console.log(res) 
                         }
                     })
                 }
@@ -76,11 +75,14 @@ define(function (require, exports, module) {
                         url: "/student/lectureSignUp.do",
                         isAsync: false,
                         data: {
-                            deviceCode:1,
-                            lectureId: 1, //模拟而已
+                            lectureId: id, 
                         },
                         success: function(res){
-                            console.log(res) //添加提示
+                            layer.open({
+                                content: '预报名成功！',
+                                skin: 'msg',
+                                time: 1
+                            })
                         }
                     })
                 }
@@ -106,7 +108,11 @@ define(function (require, exports, module) {
                             }
                         },
                         success: function(res){
-                            console.log(res)
+                            layer.open({
+                                content: '留言成功！',
+                                skin: 'msg',
+                                time: 2
+                            })
                             _page.getReport();
                         }
                     })

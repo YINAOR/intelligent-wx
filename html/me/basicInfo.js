@@ -72,12 +72,19 @@ define(function (require, exports, module) {
                         student:studentUpdata
                     },
                     success: function(res){
-                        console.log('success')
-                        console.log(res)
-                        _g.openWin({
-                            name:"info",
-                            url:"info_frame.html"
+                        layer.open({
+                            content: '更新成功！',
+                            skin: 'msg',
+                            time: 1
                         })
+
+                        setTimeout(function(){
+                            _g.openWin({
+                                name:"info",
+                                url:"info_frame.html"
+                            })
+                        },2000)
+
                     },
                     error: function(res){
                         console.log(res)

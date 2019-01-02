@@ -36,7 +36,11 @@ define(function (require, exports, module) {
                     },
                     success:function(res){
                         console.log(res)
-                        //提示提交成功
+                        layer.open({
+                            content: '问题已反馈！',
+                            skin: 'msg',
+                            time: 1
+                        })
                     },
                     error:function(res){
                         console.log(res)

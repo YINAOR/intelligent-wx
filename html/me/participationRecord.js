@@ -11,9 +11,7 @@ define(function(require, exports, module) {
             lectureList: [],
             conversationList: [],
         },
-        ready: function() {
-            sessionStorage.setItem("deviceCode", "1");
-            
+        ready: function() {        
 
             Http.ajax({
                 url: "/student/queryStudentLectureParticipateList.do",
