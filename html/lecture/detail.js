@@ -26,22 +26,7 @@ define(function (require, exports, module) {
             isThumbsUp: 0, //本学生是否点赞
             thumbsUpNum: 0 ,//点赞人数
             comment: 0, //是否展示留言框
-            commentList: [{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳的回款的恐惧阿卡卡',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！的哈慷慨激昂卡卡打卡机安检'
-            },{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！'
-            },{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！'
-            }],
+            commentList: [],
             totalResult:0, //评论总记录数
         },
         ready: function() {
@@ -69,20 +54,37 @@ define(function (require, exports, module) {
             signTap: function() {
                 
                 if(!main.isSignUp) {
-                    main.isSignUp = !main.isSignUp;
-                    main.SignUpNum ++;
-                    Http.ajax({
-                        url: "/student/lectureSignUp.do",
-                        isAsync: false,
-                        data: {
-                            lectureId: id, 
-                        },
-                        success: function(res){
-                            layer.open({
-                                content: '预报名成功！',
-                                skin: 'msg',
-                                time: 1
-                            })
+                    layer.open({
+                        content: '确定要预报名吗？',
+                        btn: ['确定', '取消'],
+                        yes: function(index){
+                            Http.ajax({
+                                url: "/student/lectureSignUp.do",
+                                isAsync: false,
+                                data: {
+                                    lectureId: id, 
+                                },
+                                success: function(res){
+                                    console.log(res)
+                                    if(res.code == 200){
+                                        layer.open({
+                                            content: '预报名成功！',
+                                            skin: 'msg',
+                                            time: 1
+                                        })
+                                        main.isSignUp = !main.isSignUp;
+                                        main.SignUpNum ++;
+                                    }else{
+                                        layer.open({
+                                            content: '预报名失败！',
+                                            skin: 'msg',
+                                            time: 1
+                                        })
+                                    }  
+                                }
+                            });
+
+                            layer.close(index)
                         }
                     })
                 }
@@ -91,9 +93,7 @@ define(function (require, exports, module) {
                 main.comment = 1;
             },
             reportTap: function() {
-                if($(".weui-textarea").val() == null){
-                    console.log(fail) //要添加提示
-                }else{
+                if($(".weui-textarea").val()){
                     main.comment = 0;
                     var commentContent = $(".weui-textarea").val()
 
@@ -108,13 +108,28 @@ define(function (require, exports, module) {
                             }
                         },
                         success: function(res){
-                            layer.open({
-                                content: '留言成功！',
-                                skin: 'msg',
-                                time: 2
-                            })
-                            _page.getReport();
+                            if(res.code == 200){
+                                layer.open({
+                                    content: '留言成功！',
+                                    skin: 'msg',
+                                    time: 2
+                                })
+                                _page.getReport();
+                            }else{
+                                layer.open({
+                                    content: '留言失败！',
+                                    skin: 'msg',
+                                    time: 2
+                                })
+                            }
                         }
+                    })
+                }else{
+                    main.comment = 0;
+                    layer.open({
+                        content: '请输入内容！',
+                        skin: 'msg',
+                        time: 2
                     })
                 }
             }
@@ -178,12 +193,11 @@ define(function (require, exports, module) {
                 success: function(res){ //有错
                     console.log("report")
                     console.log(res)
-                    if(res.data){
+                    if(res.code == 200){
                         main.commentList = res.data.paging.list; 
                         main.totalResult = res.data.paging.totalResult;
 
-                    }else{
-                        
+                    }else{                        
                         main.commentList = null;
                     }
                 },

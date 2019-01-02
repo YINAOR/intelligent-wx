@@ -29,7 +29,7 @@ define(function (require, exports, module) {
                     },
                     success: function(res){
                         console.log(res)
-                        if(res.msg == "绑定成功！"){
+                        if(res.msg == "绑定成功！" || res.msg == "首次绑定成功！"){
                             //消息提示
                             Http.ajax({
                                 url: "student/login.do",

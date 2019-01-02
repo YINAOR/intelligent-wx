@@ -32,6 +32,7 @@
 	<div class="ui-list" style="margin-top:60px;">
 		<div class="ui-item" v-for="item in allList" :key="item.id" @click="openLectureDetail(this.item.id)" id="table">
 			<div class="ui-item__avater" style="background-image: url({{item.imageUrl}})"></div>
+			<div class="ui-item__avater" v-else="{{item.imageUrl}}" style="background-image: url('../../image/lecture/logo.png')"></div>			
 			<div class="ui-item__name">{{item.category.name}}</div>
 			<div class="ui-item__info">
 				<div class="ui-item__title">{{item.name}}</div>
