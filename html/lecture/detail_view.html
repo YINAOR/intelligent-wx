@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui-report__btn" v-touch:tap="reportTap">发表评论</div>
+        <div class="ui-report__btn" v-touch:tap="reportTap" style="margin-top: .5rem">发表评论</div>
     </div>
     
     <div class="ui-commentList">
@@ -48,7 +48,8 @@
         </div>
         <div class="ui-commentItem" v-for="item in commentList">
             <div class="ui-commentItem__info">
-                <div class="ui-commentItem__avatar" style="background-image: url({{item.avatar}})"></div>
+                <div class="ui-commentItem__avatar" v-if="{{item.avatar}}" style="background-image: url({{item.avatar}})"></div>
+                <div class="ui-commentItem__avatar" v-else="{{item.avatar}}" style="background-image: url('../../image/lecture/logo.png')"></div>
                 <div class="ui-commentItem__content">
                 <div class="ui-commentItem__name">{{item.student.name}}</div>
                 <div class="ui-commentItem__text">{{item.commentTimeStr}}</div>

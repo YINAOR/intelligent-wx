@@ -11,7 +11,7 @@ define(function(require, exports, module) {
             lectureList: [],
             conversationList: [],
         },
-        ready: function() {        
+        ready: function() {
 
             Http.ajax({
                 url: "/student/queryStudentLectureParticipateList.do",
@@ -20,12 +20,21 @@ define(function(require, exports, module) {
                     paging: paging
                 },
                 success: function(res) {
-                    if (res.data.paging) {
-                        console.log(res)
-                        main.lectureList = res.data.paging.list;
+                    if (res.code == 200) {
+                        if (res.data.paging) {
+                            console.log(res)
+                            main.lectureList = res.data.paging.list;
+                        } else {
+                            main.showInfo = 3;
+                        }
                     } else {
-                        main.showInfo = 3;
+                        layer.open({
+                            content: res.msg,
+                            skin: 'msg',
+                            time: 1
+                        })
                     }
+
 
                 },
                 error: function(res) {
@@ -57,12 +66,21 @@ define(function(require, exports, module) {
                             paging: paging
                         },
                         success: function(res) {
-                            if (res.data.paging) {
-                                console.log(res)
-                                main.conversationList = res.data.paging.list;
+                            if (res.code == 200) {
+                                if (res.data.paging) {
+                                    console.log(res)
+                                    main.conversationList = res.data.paging.list;
+                                } else {
+                                    main.showInfo = 3;
+                                }
                             } else {
-                                main.showInfo = 3;
+                                layer.open({
+                                    content: res.msg,
+                                    skin: 'msg',
+                                    time: 1
+                                })
                             }
+
 
                         },
                         error: function(res) {

@@ -169,7 +169,7 @@ body {
   top: .3rem;
   left: .3rem;
   width: 1rem;
-  height: 1rem;
+  height: 1.5rem;
   -webkit-background-size: 1rem 1rem;
      -moz-background-size: 1rem;
        -o-background-size: 1rem;
@@ -223,6 +223,10 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-image: url(../../image/lecture/type.png); }
+  .ui-item__icon.is-speaker {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url(../../image/lecture/speaker.png); }
 
 .ui-item__content {
   display: inline-block;

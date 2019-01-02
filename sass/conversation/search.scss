@@ -115,6 +115,9 @@ html,body {
     &.is-typeIcon {
     	@include bgi-center(url(../../image/lecture/type.png));
     }
+    &.is-speaker {
+    	@include bgi-center(url(../../image/lecture/speaker.png));
+    }
 }
 
 .ui-item__content {

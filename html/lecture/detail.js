@@ -1,6 +1,6 @@
-define(function (require, exports, module) {
+define(function(require, exports, module) {
     var Http = require('U/http');
-    var id= api.pageParam.id;
+    var id = api.pageParam.id;
 
     var main = new Vue({
         el: '#main',
@@ -11,10 +11,10 @@ define(function (require, exports, module) {
             content: '',
             dateStr: '',
             startTimeStr: '',
-            endTimeStr:'',
+            endTimeStr: '',
             address: '',
-            hour:0,
-            speakerLinkList:[],
+            hour: 0,
+            speakerLinkList: [],
             groupOfPep: '',
             isProved: 0,
             limitNumOfPep: 0, //限制人数
@@ -24,60 +24,47 @@ define(function (require, exports, module) {
             isSignUp: 0, //本学生是否预报名
             signUpNum: 0, //预报名人数
             isThumbsUp: 0, //本学生是否点赞
-            thumbsUpNum: 0 ,//点赞人数
+            thumbsUpNum: 0, //点赞人数
             comment: 0, //是否展示留言框
-            commentList: [{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳的回款的恐惧阿卡卡',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！的哈慷慨激昂卡卡打卡机安检'
-            },{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！'
-            },{
-                avatar: '../../image/lecture/avater.jpg',
-                name: '花生壳',
-                time: '2018-06-10 15:19:02',
-                comment: '讲得超棒，很喜欢这个老师！'
-            }],
-            totalResult:0, //评论总记录数
+            commentList: [],
+            totalResult: 0, //评论总记录数
+            currentPage: 1,
+            showCount: 5
         },
         ready: function() {
-            
+
         },
         methods: {
             thumbsTap: function() {
-                
-                if(!main.isThumbsUp) {
+
+                if (!main.isThumbsUp) {
                     main.isThumbsUp = !main.isThumbsUp;
-                    main.thumbsUpNum ++;
+                    main.thumbsUpNum++;
                     Http.ajax({
                         url: "/student/lectureThumbsup.do",
                         isAsync: false,
                         data: {
-                            lectureId: id, 
+                            lectureId: id,
                         },
-                        success: function(res){
-                            console.log(res) 
+                        success: function(res) {
+                            console.log(res)
                         }
                     })
                 }
-                
+
             },
             signTap: function() {
-                
-                if(!main.isSignUp) {
+
+                if (!main.isSignUp) {
                     main.isSignUp = !main.isSignUp;
-                    main.SignUpNum ++;
+                    main.SignUpNum++;
                     Http.ajax({
                         url: "/student/lectureSignUp.do",
                         isAsync: false,
                         data: {
-                            lectureId: id, 
+                            lectureId: id,
                         },
-                        success: function(res){
+                        success: function(res) {
                             layer.open({
                                 content: '预报名成功！',
                                 skin: 'msg',
@@ -91,29 +78,37 @@ define(function (require, exports, module) {
                 main.comment = 1;
             },
             reportTap: function() {
-                if($(".weui-textarea").val() == null){
+                if ($(".weui-textarea").val() == null) {
                     console.log(fail) //要添加提示
-                }else{
+                } else {
                     main.comment = 0;
                     var commentContent = $(".weui-textarea").val()
-
-                    
                     Http.ajax({
                         url: "student/saveLectureComment.do",
                         async: false,
                         data: {
-                            lectureComment:{
-                                id:id, 
+                            lectureComment: {
+                                id: id,
                                 commentContent: commentContent,
                             }
                         },
-                        success: function(res){
-                            layer.open({
-                                content: '留言成功！',
-                                skin: 'msg',
-                                time: 2
-                            })
-                            _page.getReport();
+                        success: function(res) {
+                            if (res.code == 200) {
+                                layer.open({
+                                    content: '留言成功！',
+                                    skin: 'msg',
+                                    time: 2
+                                })
+                                $(".weui-textarea").val('');
+                                _page.getReport();
+                            } else {
+                                layer.open({
+                                    content: res.msg,
+                                    skin: 'msg',
+                                    time: 2
+                                })
+                            }
+
                         }
                     })
                 }
@@ -122,18 +117,16 @@ define(function (require, exports, module) {
     });
 
     var _page = {
-        getDetail:  function() {
-
-
+        getDetail: function() {
             Http.ajax({
                 url: "user/queryLectureDetail.do",
                 async: false,
                 data: {
 
-                    id: id 
+                    id: id
                 },
-                success: function(res){
-                    if(res.code == 200){ 
+                success: function(res) {
+                    if (res.code == 200) {
                         console.log(res)
                         var data1 = res.data.lecture;
                         console.log(data1)
@@ -159,47 +152,60 @@ define(function (require, exports, module) {
                         main.isSignUp = data1.isSignUp; //是否预报名
                         main.isThumbsUp = data1.isThumbsUp; //是否点赞
 
-                        
+
                     }
                 }
             })
         },
 
-        getReport: function(){
+        getReport: function() {
             Http.ajax({
                 url: "user/findCommentByLectureId.do",
                 async: false,
                 data: {
-                    paging:{
-                        currentPage:1,
-                        showCount:5
-                    } //模拟而已
-                },
-                success: function(res){ //有错
-                    console.log("report")
-                    console.log(res)
-                    if(res.data){
-                        main.commentList = res.data.paging.list; 
-                        main.totalResult = res.data.paging.totalResult;
-
-                    }else{
-                        
-                        main.commentList = null;
+                    paging: {
+                        currentPage: main.currentPage,
+                        showCount: main.showCount,
+                        t: {
+                            id: id
+                        }
                     }
                 },
-                error: function(res){
+                success: function(res) { //有错
+                    if (res.data.paging) {
+                        if(res.data.paging.list) {
+                            main.commentList = main.commentList.concat(res.data.paging.list);
+                            main.totalResult = res.data.paging.totalResult;
+                        } else {
+                            window.isNoMore = true;
+                        }
+                        
+                    } else {
+                        window.isNoMore = true;
+                    }
+                },
+                error: function(res) {
                     console.log(res)
                 }
             })
         }
     }
-        
+
 
 
     _page.getDetail();
 
     _page.getReport();
-    
-    
+
+    _g.setLoadmore({
+        threshold: 100
+    }, function() {
+        if (!window.isNoMore) {
+            main.currentPage++;
+            _page.getReport();
+        }
+    });
+
+
     module.exports = {};
 })
