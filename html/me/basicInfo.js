@@ -7,7 +7,7 @@ define(function (require, exports, module) {
         data: {
             avatar: '../../image/me/img-avatar.jpeg',
             name: '',
-            studentId: '',
+            num: '',
             college: '',
             major: '',
             classNum:'',
@@ -18,7 +18,7 @@ define(function (require, exports, module) {
             var student = JSON.parse(sessionStorage.student);
             console.log(student)
             this.name = student.name;
-            this.studentId = student.num;
+            this.num = student.num;
             this.college = student.college.name;
             this.major = student.major.name;
             this.classNum = student.classNum;
@@ -55,16 +55,17 @@ define(function (require, exports, module) {
         },
         methods: {
             save: function(){
-                var studentUpdata = {num:main.num};//更新信息对象
-                var mobile = $("mobile").val();
-                var email = $("mobile").val();
+                var studentUpdata = {num:this.num};//更新信息对象
+
+                var mobile = $("#mobile").val();
+                var email = $("#email").val();
                 if(mobile != null){
-                    studentUpdata[mobile] = mobile; //如果不为空则添加
+                    studentUpdata["mobile"] = mobile; //如果不为空则添加
                 }
                 if(email != null){
-                    studentUpdata[email] = email;
+                    studentUpdata["email"] = email;
                 }
-
+                console.log(studentUpdata)
                 Http.ajax({
                     url: "student/updateProfile.do",
                     async: false,
@@ -72,19 +73,27 @@ define(function (require, exports, module) {
                         student:studentUpdata
                     },
                     success: function(res){
-                        layer.open({
-                            content: '更新成功！',
-                            skin: 'msg',
-                            time: 1
-                        })
-
-                        setTimeout(function(){
-                            _g.openWin({
-                                name:"info",
-                                url:"info_frame.html"
+                        if(res.code == 200){
+                            layer.open({
+                                content: '更新成功！',
+                                skin: 'msg',
+                                time: 1
                             })
-                        },2000)
-
+    
+                            setTimeout(function(){
+                                _g.openWin({
+                                    name:"info",
+                                    url:"info_frame.html"
+                                })
+                            },1000)
+                        }else{
+                            layer.open({
+                                content: '更新失败！',
+                                skin: 'msg',
+                                time: 1
+                            })
+                            console.log(res)
+                        }
                     },
                     error: function(res){
                         console.log(res)

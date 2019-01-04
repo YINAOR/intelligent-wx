@@ -5,8 +5,8 @@ define(function (require, exports, module) {
         el: '#main',
         template: _g.getTemplate('main/index_view'),
         data: {
-            userAvter: '../../image/main/user-unlogin.png',
-            userName: 'Y.yin',
+            userAvter: '',
+            userName: '',
             registration: 0,
             lectureRecord: 0,
             conversationRecord: 0,
@@ -21,6 +21,11 @@ define(function (require, exports, module) {
             }],
         },
         ready: function() {
+            var student = JSON.parse(sessionStorage.student);
+            
+            this.userAvter = student.avatar;
+            
+            this.userName = student.name;
         },
         methods: {
             openWinTap: function(index) {

@@ -36,11 +36,19 @@ define(function (require, exports, module) {
                     },
                     success:function(res){
                         console.log(res)
-                        layer.open({
-                            content: '问题已反馈！',
-                            skin: 'msg',
-                            time: 1
-                        })
+                        if(res.code == 200){
+                            layer.open({
+                                content: '问题已反馈！',
+                                skin: 'msg',
+                                time: 1
+                            })
+                        }else{
+                            layer.open({
+                                content: '问题反馈失败！',
+                                skin: 'msg',
+                                time: 1
+                            })
+                        }
                     },
                     error:function(res){
                         console.log(res)
