@@ -42,9 +42,9 @@ define(function (require, exports, module) {
                             setTimeout(function(){api.openWin({
                                 url: "index_frame.html"
                             })},1000)
-                        }else if(res.code == 403){
+                        }else{
                             layer.open({
-                                content: '账号不存在或密码错误！',
+                                content: res.msg,
                                 skin: 'msg',
                                 time: 1
                             })

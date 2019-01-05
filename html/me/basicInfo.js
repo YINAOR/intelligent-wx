@@ -1,4 +1,4 @@
-define(function (require, exports, module) {
+define(function(require, exports, module) {
     var Http = require('U/http');
 
     var main = new Vue({
@@ -10,7 +10,7 @@ define(function (require, exports, module) {
             num: '',
             college: '',
             major: '',
-            classNum:'',
+            classNum: '',
             mobile: '',
             email: '',
         },
@@ -26,34 +26,36 @@ define(function (require, exports, module) {
             this.email = student.email;
 
             var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-            $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-            $uploaderInput = $("#uploaderInput"),
-            $uploaderFiles = $("#uploaderFiles")
-            ;
-    
-            $uploaderInput.on("change", function(e){
-                var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
+                $gallery = $("#gallery"),
+                $galleryImg = $("#galleryImg"),
+                $uploaderInput = $("#uploaderInput"),
+                $uploaderFiles = $("#uploaderFiles");
+
+            $uploaderInput.on("change", function(e) {
+                var src, url = window.URL || window.webkitURL || window.mozURL,
+                    files = e.target.files;
                 for (var i = 0, len = files.length; i < len; ++i) {
                     var file = files[i];
-        
+
                     if (url) {
                         src = url.createObjectURL(file);
                     } else {
                         src = e.target.result;
                     }
-        
+
                     $uploaderFiles.append($(tmpl.replace('#url#', src)));
                 }
             });
-            $uploaderFiles.on("click", "li", function(){
+            $uploaderFiles.on("click", "li", function() {
                 $galleryImg.attr("style", this.getAttribute("style"));
                 $gallery.fadeIn(100);
             });
-            $gallery.on("click", function(){
+            $gallery.on("click", function() {
                 $gallery.fadeOut(100);
             });
         },
         methods: {
+<<<<<<< HEAD
             save: function(){
                 var studentUpdata = {num:this.num};//更新信息对象
 
@@ -63,6 +65,16 @@ define(function (require, exports, module) {
                     studentUpdata["mobile"] = mobile; //如果不为空则添加
                 }
                 if(email != null){
+=======
+            save: function() {
+                var studentUpdata = { num: main.studentId }; //更新信息对象
+                var mobile = $("#mobile").val();
+                var email = $("#email").val();
+                if (mobile) {
+                    studentUpdata["mobile"] = mobile; //如果不为空则添加
+                }
+                if (email) {
+>>>>>>> 72944ef10ae948b94c95d09ab857237b92540f20
                     studentUpdata["email"] = email;
                 }
                 console.log(studentUpdata)
@@ -70,14 +82,20 @@ define(function (require, exports, module) {
                     url: "student/updateProfile.do",
                     async: false,
                     data: {
-                        student:studentUpdata
+                        student: studentUpdata
                     },
+<<<<<<< HEAD
                     success: function(res){
                         if(res.code == 200){
+=======
+                    success: function(res) {
+                        if (res.code == 200) {
+>>>>>>> 72944ef10ae948b94c95d09ab857237b92540f20
                             layer.open({
                                 content: '更新成功！',
                                 skin: 'msg',
                                 time: 1
+<<<<<<< HEAD
                             })
     
                             setTimeout(function(){
@@ -94,14 +112,33 @@ define(function (require, exports, module) {
                             })
                             console.log(res)
                         }
+=======
+                            })
+
+                            setTimeout(function() {
+                                _g.openWin({
+                                    name: "info",
+                                    url: "info_frame.html"
+                                })
+                            }, 2000)
+                        } else {
+                            layer.open({
+                                content: res.msg,
+                                skin: 'msg',
+                                time: 1
+                            })
+                        }
+
+
+>>>>>>> 72944ef10ae948b94c95d09ab857237b92540f20
                     },
-                    error: function(res){
+                    error: function(res) {
                         console.log(res)
                     }
                 })
             }
         },
     });
-    
+
     module.exports = {};
 });

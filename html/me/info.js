@@ -17,7 +17,9 @@ define(function (require, exports, module) {
         ready: function() {
             var student = JSON.parse(sessionStorage.student);
             console.log(student)
-            //this.userAvter = student.avatar;
+            if(student.avatar) {
+                this.userAvter = student.avatar;
+            }
             this.name = student.name;
             this.studentId = student.num;
             this.college = student.college.name;
