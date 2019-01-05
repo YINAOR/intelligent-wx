@@ -43,8 +43,8 @@
     </div>
     
     <div class="ui-commentList">
-        <div class="ui-commentItem" v-show="!commentList">
-            <div style="height:200px;color:black;font-size:30px;text-align:center">暂无评论，来发言吧</div>
+        <div class="ui-commentItem" v-if="commentList.length == 0">
+            <div style="height:30px;color:black;font-size:20px;text-align:center">暂无评论，来发言吧</div>
         </div>
         <div class="ui-commentItem" v-for="item in commentList">
             <div class="ui-commentItem__info">

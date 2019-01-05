@@ -55,7 +55,6 @@ define(function(require, exports, module) {
             });
         },
         methods: {
-<<<<<<< HEAD
             save: function(){
                 var studentUpdata = {num:this.num};//更新信息对象
 
@@ -65,16 +64,6 @@ define(function(require, exports, module) {
                     studentUpdata["mobile"] = mobile; //如果不为空则添加
                 }
                 if(email != null){
-=======
-            save: function() {
-                var studentUpdata = { num: main.studentId }; //更新信息对象
-                var mobile = $("#mobile").val();
-                var email = $("#email").val();
-                if (mobile) {
-                    studentUpdata["mobile"] = mobile; //如果不为空则添加
-                }
-                if (email) {
->>>>>>> 72944ef10ae948b94c95d09ab857237b92540f20
                     studentUpdata["email"] = email;
                 }
                 console.log(studentUpdata)
@@ -84,18 +73,12 @@ define(function(require, exports, module) {
                     data: {
                         student: studentUpdata
                     },
-<<<<<<< HEAD
                     success: function(res){
                         if(res.code == 200){
-=======
-                    success: function(res) {
-                        if (res.code == 200) {
->>>>>>> 72944ef10ae948b94c95d09ab857237b92540f20
                             layer.open({
                                 content: '更新成功！',
                                 skin: 'msg',
                                 time: 1
-<<<<<<< HEAD
                             })
     
                             setTimeout(function(){
@@ -112,25 +95,6 @@ define(function(require, exports, module) {
                             })
                             console.log(res)
                         }
-=======
-                            })
-
-                            setTimeout(function() {
-                                _g.openWin({
-                                    name: "info",
-                                    url: "info_frame.html"
-                                })
-                            }, 2000)
-                        } else {
-                            layer.open({
-                                content: res.msg,
-                                skin: 'msg',
-                                time: 1
-                            })
-                        }
-
-
->>>>>>> 72944ef10ae948b94c95d09ab857237b92540f20
                     },
                     error: function(res) {
                         console.log(res)

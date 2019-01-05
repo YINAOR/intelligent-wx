@@ -91,7 +91,7 @@ define(function(require, exports, module) {
                         main.signUpNum = data1.signUpNum; //签到人数                        
                         main.category = data1.category; //讲座类别
 
-                        main.isSignUp = data1.isSignUp; //是否预报名
+                        main.isSignUp = res.data.isSignUp; //是否预报名
                     }
                 }
             })

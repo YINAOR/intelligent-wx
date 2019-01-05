@@ -2,25 +2,24 @@
     <div class="ui-top">
 		<a class="ui-top__left" href="info_frame.html"></a>
         <div class="ui-top__title">预报名</div>
-        <i class="ui-top__search" v-touch:tap="searchTap"></i>
     </div>
 
     <!-- 讲座列表 -->
 <div class="ui-list" v-show="showIndex === 0">
 		<div class="ui-item" v-for="item in lectureList" :key="item.lecture.id" @click="openLectureDetail(this.item.lecture.id)">
 			<div class="ui-item__info">
-				<div class="ui-item__title">{{item.lectureSignUp.lecture.name}}</div>
+				<div class="ui-item__title">{{item.lecture.name}}</div>
 				<div class="ui-line">
 					<i class="ui-item__icon"></i>
-				    <div class="ui-item__content">{{item.lectureSignUp.lecture.dateStr}}</div>
+				    <div class="ui-item__content">举办时间：{{item.lecture.startTime}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-locationIcon"></i>
-				    <div class="ui-item__content">{{item.lectureSignUp.lecture.address}}</div>
+				    <div class="ui-item__content">讲座地点：{{item.lecture.address}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-typeIcon"></i>
-					<div class="ui-item__content">签到时间：{{item.lectureSignUp.informDateStr}}</div>
+					<div class="ui-item__content">签到时间：{{item.informDateStr}}</div>
 				</div>				
 			</div>
 		</div>

@@ -55,10 +55,10 @@ define(function(require, exports, module) {
             },
             signTap: function() {
                 if (!main.isSignUp) {
-                    // layer.open({
-                    //     content: '确定要预报名吗？',
-                    //     btn: ['确定', '取消'],
-                    //     yes: function(index) {
+                     layer.open({
+                         content: '确定要预报名吗？',
+                         btn: ['确定', '取消'],
+                         yes: function(index) {
                             Http.ajax({
                                 url: "/student/lectureSignUp.do",
                                 isAsync: false,
@@ -85,12 +85,12 @@ define(function(require, exports, module) {
                                 }
                             });
 
-                    //         layer.close(index)
-                    //     }
-                    // })
+                             layer.close(index)
+                         }
+                     })
                 } else {
                     layer.open({
-                        content: '请登录',
+                        content: '已报名',
                         skin: 'msg',
                         time: 1
                     })
@@ -171,8 +171,8 @@ define(function(require, exports, module) {
                         main.signUpNum = data1.signUpNum; //签到人数                        
                         main.category = data1.category; //讲座类别
 
-                        main.isSignUp = data1.isSignUp; //是否预报名
-                        main.isThumbsUp = data1.isThumbsUp; //是否点赞
+                        main.isSignUp = res.data.isSignUp; //是否预报名
+                        main.isThumbsUp = res.data.isThumbsUp; //是否点赞
 
 
                     }
@@ -193,7 +193,7 @@ define(function(require, exports, module) {
                         }
                     }
                 },
-                success: function(res) { //有错
+                success: function(res) { 
                     if (res.code == 200) {
                         if (res.data.paging) {
                             if (res.data.paging.list) {
@@ -207,6 +207,8 @@ define(function(require, exports, module) {
                             window.isNoMore = true;
                         }
                     }
+                    console.log(123)
+                    console.log(main.commentList)
 
                 },
                 error: function(res) {

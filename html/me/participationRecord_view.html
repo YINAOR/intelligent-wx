@@ -12,42 +12,42 @@
 	<div class="ui-list" v-show="showIndex === 0">
 		<div class="ui-item" v-for="item in lectureList" :key="item.lecture.id" @click="openLectureDetail(this.item.lecture.id)">
 			<div class="ui-item__info">
-				<div class="ui-item__title">{{item.lectureParticipate.lecture.name}}</div>
+				<div class="ui-item__title">{{item.lecture.name}}</div>
 				<div class="ui-line">
 					<i class="ui-item__icon"></i>
-				    <div class="ui-item__content">{{item.lectureParticipate.lecture.dateStr}}</div>
+				    <div class="ui-item__content">举办时间：{{item.lecture.dateStr}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-locationIcon"></i>
-				    <div class="ui-item__content">{{item.lectureParticipate.lecture.address}}</div>
+				    <div class="ui-item__content">讲座地点：{{item.lecture.address}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-typeIcon"></i>
-					<div class="ui-item__content">签到时间：{{item.lectureParticipate.firstParticipateTimeStr}}</div>
+					<div class="ui-item__content">签到时间：{{item.participateTimeStr}}</div>
 				</div>				
 			</div>
 		</div>
 	</div>
 	<!-- 茶座列表 -->
 	<div class="ui-list" v-show="showIndex === 1">
-		<div class="ui-item" v-for="item in conversationList" :key="item.Teahouse.id" @click="openTeaHouseDetail(this.item.Teahouse.id)">
+		<div class="ui-item" v-for="item in conversationList" :key="item.teahouse.id" @click="openTeaHouseDetail(this.item.teahouse.id)">
 
             <div class="ui-item__avater" style="background-image: url({{item.Appointment.Teahouse.imageUrl}})"></div>
             <div class="ui-item__name">{{item.Appointment.Teahouse.status}}</div>
 
 			<div class="ui-item__info">
-				<div class="ui-item__title">{{item.Appointment.Teahouse.name}}</div>
+				<div class="ui-item__title">{{item.teahouse.theme}}</div>
 				<div class="ui-line">
 					<i class="ui-item__icon"></i>
-				    <div class="ui-item__content">{{item.Appointment.Teahouse.createTimeStr}}</div>
+				    <div class="ui-item__content">开始时间：{{item.teahouse.startTimeStr}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-locationIcon"></i>
-				    <div class="ui-item__content">{{item.Appointment.Teahouse.address}}</div>
+				    <div class="ui-item__content">茶座地点：{{item.teahouse.address}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-typeIcon"></i>
-					<div class="ui-item__content">{{item.Appointment.Teahouse.category.name}}</div>
+					<div class="ui-item__content">所属类别：{{item.teahouse.category.name}}</div>
 				</div>
 				
 			</div>

@@ -9,7 +9,6 @@ define(function(require, exports, module) {
             lectureList: []
         },
         ready: function() {
-            sessionStorage.setItem("deviceCode","1");
             var paging = {currentPage:1,showCount:5}
             
             Http.ajax({
@@ -30,15 +29,6 @@ define(function(require, exports, module) {
             })
         },
         methods: {
-            searchTap: function() {
-                _g.openWin({
-                    name: 'lecture-search',
-                    url: '../lecture/search_frame.html ',
-                    bounces: false,
-                    slidBackEnabled: false,
-                    animation: { type: 'none' }
-                });
-            },
             openLectureDetail(id){
                 api.openWin({
                     url:"../lecture/detail_frame.html",
