@@ -33,6 +33,51 @@ define(function (require, exports, module) {
             }          
         }
     });
+
+    var _page = {
+        getNum: function() {
+            // Http.ajax({
+            //     url: '/user/queryProfile.do',
+            //     isAsync: false,
+            //     data: {
+
+            //     },
+            //     success: function(res){
+            //         if(res.code == 200){
+            //             main.registration = res.data.lsAmount; //讲座报名数
+            //             main.lectureRecord = res.data.lpAmount; //讲座签到数
+            //             main.conversationRecord = res.data.taAmount;//茶座报名数
+                       
+            //         }else {
+            //             layer.open({
+            //             content: res.msg,
+            //             skin: 'msg',
+            //             time: 1
+            //             })
+            //         }
+            //     }
+            // }) 
+             $.ajax({
+                url: 'http://120.77.204.252:80/user/queryProfile.do',
+                async: true,
+                dataType:"json",
+                type: 'post',
+                contentType: 'application/json', //'application/x-www-form-urlencoded'
+                processData: false, //!== false,
+                data: JSON.stringify({token: sessionStorage.getItem('token')}),
+                success: function (res) {
+                    main.registration = res.data.lsAmount; //讲座报名数
+                        main.lectureRecord = res.data.lpAmount; //讲座签到数
+                        main.conversationRecord = res.data.taAmount;//茶座报名数
+                },
+                error:function(err) {
+                    
+                }
+            })
+        }
+    }
+
+    _page.getNum();
     
     module.exports = {};
 })

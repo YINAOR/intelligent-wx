@@ -11,6 +11,8 @@
 	<!-- 讲座列表 -->
 	<div class="ui-list" v-show="showIndex === 0">
 		<div class="ui-item" v-for="item in lectureList" :key="item.lecture.id" @click="openLectureDetail(this.item.lecture.id)">
+			<div class="ui-item__avater" style="background-image: url({{item.imageUrl}})"></div>
+			<div class="ui-item__avater" v-else="{{item.imageUrl}}" style="background-image: url('../../image/lecture/logo.png')"></div>
 			<div class="ui-item__info">
 				<div class="ui-item__title">{{item.lecture.name}}</div>
 				<div class="ui-line">
@@ -32,8 +34,8 @@
 	<div class="ui-list" v-show="showIndex === 1">
 		<div class="ui-item" v-for="item in conversationList" :key="item.teahouse.id" @click="openTeaHouseDetail(this.item.teahouse.id)">
 
-            <div class="ui-item__avater" style="background-image: url({{item.Appointment.Teahouse.imageUrl}})"></div>
-            <div class="ui-item__name">{{item.Appointment.Teahouse.status}}</div>
+            <div class="ui-item__avater" style="background-image: url({{item.imageUrl}})"></div>
+			<div class="ui-item__avater" v-else="{{item.imageUrl}}" style="background-image: url('../../image/lecture/logo.png')"></div>
 
 			<div class="ui-item__info">
 				<div class="ui-item__title">{{item.teahouse.theme}}</div>

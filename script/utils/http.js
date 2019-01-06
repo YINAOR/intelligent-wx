@@ -88,7 +88,7 @@ define(function(require, exports, module) {
                     opts.success && opts.success(result);
                 },
                 error:function(err) {
-                    _g.toast('网络连接失败, 请检查网络!');
+                    _g.toast('请求超时，请重试！');
                     opts.error && opts.error(err);
                 }
             })
