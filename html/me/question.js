@@ -56,6 +56,9 @@ define(function (require, exports, module) {
                                 skin: 'msg',
                                 time: 1
                             })
+                            api.openWin({
+                                url: "../main/index_frame.html"
+                            })
                         }else{
                             layer.open({
                                 content: '问题反馈失败！',
