@@ -194,6 +194,10 @@ body {
   padding-left: .3rem; }
 
 .ui-item__title {
+  max-width: 4.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: .28rem;
   font-weight: 500; }
 
@@ -230,6 +234,10 @@ body {
 
 .ui-item__content {
   display: inline-block;
+  max-width: 3.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   line-height: .4rem; }
 
 

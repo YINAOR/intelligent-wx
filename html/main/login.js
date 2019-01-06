@@ -49,10 +49,7 @@ define(function (require, exports, module) {
                                 time: 1
                             })
                         }
-                    },
-                    error: function(res){
-                        console.log(res)
-                    } 
+                    }
                 })
             }
         }

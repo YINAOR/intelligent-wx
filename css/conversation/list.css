@@ -194,6 +194,10 @@ body {
   padding-left: .3rem; }
 
 .ui-item__title {
+  max-width: 4.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: .28rem;
   font-weight: 500; }
 
@@ -229,6 +233,10 @@ body {
     background-image: url(../../image/lecture/speaker.png); }
 
 .ui-item__content {
+  max-width: 3.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   display: inline-block;
   line-height: .4rem; }
 

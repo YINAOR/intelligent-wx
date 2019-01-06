@@ -7,22 +7,24 @@
         <div class="ui-message">{{messageNum}}</div>
     </div>-->
 	<div class="ui-user">
-        <img class="ui-portrait" src="../../image/main/user-unlogin.png">
+        <img class="ui-portrait" v-if="{{userAvter}}" src="{{userAvter}}">
+
+        <img class="ui-portrait" v-else="{{userAvter}}" src="../../image/main/user-unlogin.png">
 
         <div class="ui-name">{{userName}}</div>
     </div>
     <div class="ui-record">
+        <div class="ui-record__item">
+            <div class="ui-record__name">讲座参与</div>
+            <div class="ui-record__num">{{lectureRecord}}</div>
+        </div>
     	<div class="ui-record__item">
     		<div class="ui-record__name">讲座报名</div>
     		<div class="ui-record__num">{{lsAmount}}</div>
     	</div>
     	<div class="ui-record__item">
-    		<div class="ui-record__name">讲座参与</div>
-    		<div class="ui-record__num">{{lpAmount}}</div>
-    	</div>
-    	<div class="ui-record__item">
-    		<div class="ui-record__name">茶座参与</div>
-    		<div class="ui-record__num">{{taAmount}}</div>
+    		<div class="ui-record__name">茶座报名</div>
+    		<div class="ui-record__num">{{conversationRecord}}</div>
     	</div>	
     </div>
 <!--	<div class="ui-list">
