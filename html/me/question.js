@@ -5,18 +5,32 @@ define(function (require, exports, module) {
         el: '#main',
         template: _g.getTemplate('me/question_view'),
         data: {
-            typeList: [{
-                name: '学校生活',
-                select: 1
-            },{
-                name: '学习',
-                select: 0
-            },{
-                name: '其他',
-                select: 0
-            }]        
+            typeList: []        
         },
         ready: function() {
+            Http.ajax({
+                url: "../user/queryCategory.do",
+                async:false,
+                data: {
+                    type: "AQ"
+                },
+                success:function(res){
+                    var typeList = res.data.categoryList;
+                    var options = "";
+
+                    for(var i=1; i<=typeList.length; i++){
+                        options = options + "<option value="+i+">"+typeList[i-1].name+"</option>"
+                    }
+                    $("#questionCategory").append(options)
+                },
+                error:function(res){
+                    layer.open({
+                        content: '无法获取分类！',
+                        skin: 'msg',
+                        time: 1
+                    })
+                }
+            })
         },
         methods: {
             handUp: function(){

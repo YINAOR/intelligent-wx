@@ -15,6 +15,7 @@ define(function (require, exports, module) {
             student:{}
         },
         ready: function() {
+            
             var student = JSON.parse(sessionStorage.student);
             console.log(student)
             if(student.avatar) {
