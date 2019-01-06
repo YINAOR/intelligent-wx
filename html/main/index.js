@@ -41,7 +41,7 @@ define(function (require, exports, module) {
                             _this.taAmount = resData.taAmount;
                             _this.lsAmount = resData.lsAmount;
 
-                            sessionStorage.setItem("student",resData.student)
+                            sessionStorage.setItem("student",JSON.stringify(resData.student));
                         }
                     },
                     error: function(res){
