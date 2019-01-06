@@ -44,9 +44,9 @@ define(function(require, exports, module) {
                                 data: {
                                     Appointment: {
                                         Teahouse: {
-                                            id: id,
-                                            reason: reason
-                                        }
+                                            id: id
+                                        },
+                                        reason: reason
                                     }
                                 },
                                 success: function(res) {

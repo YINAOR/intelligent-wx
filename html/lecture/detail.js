@@ -207,9 +207,6 @@ define(function(require, exports, module) {
                             window.isNoMore = true;
                         }
                     }
-                    console.log(123)
-                    console.log(main.commentList)
-
                 },
                 error: function(res) {
                     console.log(res)
@@ -225,7 +222,7 @@ define(function(require, exports, module) {
     _page.getReport();
 
     _g.setLoadmore({
-        threshold: 100
+        threshold: 0
     }, function() {
         if (!window.isNoMore) {
             main.currentPage++;
