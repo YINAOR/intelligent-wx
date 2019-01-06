@@ -41,7 +41,7 @@ define(function (require, exports, module) {
                     url: "/student/saveQuestion.do",
                     async: false,
                     data: {
-                        AnswersAndQuestions:{
+                        answersAndQuestions:{
                             question: questionContent,
                             category: {
                                 id: questionCategory
