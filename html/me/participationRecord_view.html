@@ -1,9 +1,9 @@
 <div class="ui-main">
-	<div class="ui-top">
+	<!-- <div class="ui-top">
 		<a class="ui-top__left" href="info_frame.html"></a>
 		<div class="ui-top__title">参与记录</div>
-		<!-- <i class="ui-top__search" v-touch:tap="searchTap"></i> -->
-	</div>
+		<!-- <i class="ui-top__search" v-touch:tap="searchTap"></i> 
+	</div> -->
 	<div class="ui-tap">
 		<div class="ui-tap__tap" v-bind:class="showIndex === 0 ? 'is-change': ''" v-touch:tap="changeTap(0)">讲座</div>
 		<div class="ui-tap__tap" v-bind:class="showIndex === 1 ? 'is-change': ''" v-touch:tap="changeTap(1)">茶座</div>
@@ -28,6 +28,10 @@
 					<div class="ui-item__content">签到时间：{{item.participateTimeStr}}</div>
 				</div>				
 			</div>
+		</div>
+		<div class="ui-noInfo" v-show="lectureshowInfo === 3">
+			<i></i>
+			<div class="ui-noInfo__message">暂无结果</div>
 		</div>
 	</div>
 	<!-- 茶座列表 -->
@@ -54,9 +58,9 @@
 				
 			</div>
 		</div>
-	</div>
-	<div class="ui-noInfo" v-show="showInfo === 3">
-		<i></i>
-		<div class="ui-noInfo__message">暂无结果</div>
+		<div class="ui-noInfo" v-show="conversationshowInfo === 3">
+			<i></i>
+			<div class="ui-noInfo__message">暂无结果</div>
+		</div>
 	</div>
 </div>

@@ -6,7 +6,8 @@ define(function(require, exports, module) {
         el: '#main',
         template: _g.getTemplate('me/participationRecord_view'),
         data: {
-            showInfo: 0,
+            lectureshowInfo: 0,
+            conversationshowInfo: 0,
             showIndex: 0,
             lectureList: [],
             conversationList: [],
@@ -25,7 +26,7 @@ define(function(require, exports, module) {
                             console.log(res)
                             main.lectureList = res.data.paging.list;
                         } else {
-                            main.showInfo = 3;
+                            main.lectureshowInfo = 3;
                         }
                     } else {
                         layer.open({
@@ -71,7 +72,7 @@ define(function(require, exports, module) {
                                     console.log(res)
                                     main.conversationList = res.data.paging.list;
                                 } else {
-                                    main.showInfo = 3;
+                                    main.conversationshowInfo = 3;
                                 }
                             } else {
                                 layer.open({

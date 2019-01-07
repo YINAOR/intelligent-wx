@@ -11,18 +11,8 @@ define(function(require, exports, module) {
         },
         ready: function() {
             var _this = this;
-<<<<<<< HEAD
-            var paging = {currentPage:1,showCount:5};
-            
-=======
             var paging = { currentPage: 1, showCount: 5 };
-            layer.open({
-                content: "res.msg",
-                skin: 'msg',
-                time: 1
-            })
 
->>>>>>> fdaed86f2ed5a40c81b0503a1dc8ff64a70bebc0
             Http.ajax({
                 url: "/student/queryStudentLectureSignList.do",
                 async: false,
@@ -35,19 +25,8 @@ define(function(require, exports, module) {
                             if (res.data.paging.list) {
                                 console.log(res)
                                 _this.lectureList = res.data.paging.list;
-                                layer.open({
-                                    content: "123",
-                                    skin: 'msg',
-                                    time: 1,
-                                    anim: false
-                                })
+                                
                             } else {
-                                layer.open({
-                                    content: "456",
-                                    skin: 'msg',
-                                    time: 1,
-                                    anim: false
-                                })
                                 _this.showInfo = 3;
                             }
                         } else {
@@ -56,6 +35,12 @@ define(function(require, exports, module) {
 
                     } else {
                         _this.showInfo = 3;
+                        layer.open({
+                            content: res.msg,
+                            skin: 'msg',
+                            time: 1,
+                            anim: false
+                        })
                     }
                 },
                 error: function(res) {
