@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/alterpassword_view'),
+        template: _g.getTemplate('me/alterpassword_view'),
         data: {
             oldPassword:"",
             newPassword:""
