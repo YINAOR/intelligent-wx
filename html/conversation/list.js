@@ -10,7 +10,7 @@ define(function(require, exports, module) {
             allList: [],
         },
         ready: function() {
-            var that = this;
+            var _this = this;
             var paging = {"currentPage": 1,"showCount": 5};
 
             Http.ajax({
@@ -21,9 +21,13 @@ define(function(require, exports, module) {
                 },
                 success: function(res){
                     if(res.code == 200){
-                        console.log(res.data.paging.list)
-                        that.allList = res.data.paging.list;
-                        console.log(that.allList)
+                        if(res.data.paging.list) {
+                            console.log(res.data.paging.list)
+                            _this.allList = _this.allList.concat(res.data.paging.list);
+                            console.log(_this.allList)
+                        } else {
+                            window.isNoMore = true;
+                        }
                         
                     }else {
                         console.log(res)
@@ -61,5 +65,14 @@ define(function(require, exports, module) {
         }
     });
 
+    _g.setLoadmore({
+        threshold: 100
+    }, function () {
+        if (!window.isNoMore) {
+            main.paging.currentPage++;
+            _page.getData();
+        }
+    });
+    
     module.exports = {};
 })

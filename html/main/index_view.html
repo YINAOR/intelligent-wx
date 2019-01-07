@@ -9,7 +9,7 @@
 	<div class="ui-user">
         <img class="ui-portrait" v-if="{{userAvter}}" src="{{userAvter}}">
 
-        <img class="ui-portrait" v-else="{{userAvter}}" src="../../image/main/user-unlogin.png">
+        <img class="ui-portrait" v-else src="../../image/main/user-unlogin.png">
 
         <div class="ui-name">{{userName}}</div>
     </div>
@@ -38,7 +38,10 @@
         <div class="weui-cells">
 
             <a class="weui-cell weui-cell_access" href="../lecture/list_frame.html">
-                <div class="weui-cell__hd"><img src="../../image/main/lecture1.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__hd">
+                    <img v-if="{{userAvter}}" src="{{userAvter}}" alt="" style="width:20px;margin-right:5px;display:block">
+                    <img v-else src="../../image/main/lecture1.png" alt="" style="width:20px;margin-right:5px;display:block">
+                </div>
                 <div class="weui-cell__bd">
                     <p>讲座列表</p>
                 </div>

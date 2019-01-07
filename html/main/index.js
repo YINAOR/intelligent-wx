@@ -34,7 +34,7 @@ define(function (require, exports, module) {
                             console.log("success")
                             console.log(res)    
                             var resData = res.data;
-                            _this.userAvter = resData.student.avatar;
+                            _this.userAvter = resData.student.wetchatImage;
                             _this.userName = resData.student.name;
     
                             _this.lpAmount = resData.lpAmount;

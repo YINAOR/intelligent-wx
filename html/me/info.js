@@ -5,7 +5,7 @@ define(function (require, exports, module) {
         el: '#main',
         template: _g.getTemplate('me/info_view'),
         data: {
-            userAvter: '../../image/main/user-unlogin.png',
+            userAvter: '',
             name: '',
             studentId: '',
             college: '',
@@ -18,8 +18,8 @@ define(function (require, exports, module) {
         	console.log(typeof localStorage.student)
             var student = JSON.parse(localStorage.student);
             console.log(student)
-            if(student.avatar) {
-                this.userAvter = student.avatar;
+            if(student.wetchatImage) {
+                this.userAvter = student.wetchatImage;
             }
             this.name = student.name;
             this.studentId = student.num;
@@ -28,7 +28,6 @@ define(function (require, exports, module) {
 
         },
         methods: {
-
 
         }
     });

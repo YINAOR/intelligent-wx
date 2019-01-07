@@ -1,6 +1,7 @@
 <div class="ui-main">
     <div class="user-container1">
-        <img class="user-portrait" src="{{userAvter}}">
+        <img v-if="{{userAvter}}" class="user-portrait" src="{{userAvter}}">
+        <img v-else class="user-portrait" src="../../image/main/user-unlogin.png">
         <div class="user-container2">
             <div class="weui-cells">
                 <div class="weui-cell"><div class="weui-cell__bd"><p>姓名</p></div><div class="weui-cell__ft">{{name}}</div></div>

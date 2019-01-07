@@ -66,7 +66,7 @@ define(function(require, exports, module) {
                         
                         
                     }else {
-                        
+                        console.log(res)
                     }
                 }
             }) 
