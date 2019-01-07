@@ -10,8 +10,8 @@ define(function(require, exports, module) {
             lectureList: []
         },
         ready: function() {
-            var _this = this,
-            var paging = {currentPage:1,showCount:5}
+            var _this = this;
+            var paging = {currentPage:1,showCount:5};
             layer.open({
                 content: "res.msg",
                 skin: 'msg',
