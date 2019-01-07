@@ -15,8 +15,8 @@ define(function (require, exports, module) {
             student:{}
         },
         ready: function() {
-        	console.log(typeof sessionStorage.student)
-            var student = JSON.parse(sessionStorage.student);
+        	console.log(typeof localStorage.student)
+            var student = JSON.parse(localStorage.student);
             console.log(student)
             if(student.avatar) {
                 this.userAvter = student.avatar;

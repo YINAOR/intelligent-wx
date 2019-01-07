@@ -5,11 +5,18 @@ define(function(require, exports, module) {
         el: '#main',
         template: _g.getTemplate('me/beforeApply_view'),
         data: {
+            showInfo: 0,
             showIndex: 0,
             lectureList: []
         },
         ready: function() {
+            var _this = this,
             var paging = {currentPage:1,showCount:5}
+            layer.open({
+                content: "res.msg",
+                skin: 'msg',
+                time: 1
+            })
             
             Http.ajax({
                 url: "/student/queryStudentLectureSignList.do",
@@ -18,12 +25,34 @@ define(function(require, exports, module) {
                         paging: paging
                     },
                     success: function(res){
-                        if(res.data.paging) {
-                            console.log(res)
-                            main.lectureList = res.data.paging.list;
+                        if(res.code == 200){
+                            if(res.data.paging.list) {
+                                console.log(res)
+                                _this.lectureList = res.data.paging.list;
+                                layer.open({
+                                    content: "123",
+                                    skin: 'msg',
+                                    time: 1,
+                                    anim:false
+                                })
+                            }else{
+                                layer.open({
+                                    content: "456",
+                                    skin: 'msg',
+                                    time: 1,
+                                    anim:false
+                                })
+                                _this.showInfo = 3;
+                            }
                         }
                     },
                     error: function(res){
+                        layer.open({
+                            content: res.msg,
+                            skin: 'msg',
+                            time: 1,
+                            anim:false
+                        })
                         console.log(res)
                     }
             })

@@ -1,11 +1,11 @@
-<!-- <div class="ui-main">
-    <div class="ui-top">
+<div class="ui-main">
+<!--    <div class="ui-top">
 		<a class="ui-top__left" href="info_frame.html"></a>
         <div class="ui-top__title">预报名</div>
     </div> -->
 
     <!-- 讲座列表 -->
-<div class="ui-list" v-show="showIndex === 0">
+	<div class="ui-list" v-show="showIndex === 0">
 		<div class="ui-item" v-for="item in lectureList" :key="item.lecture.id" @click="openLectureDetail(this.item.lecture.id)">
 			<div class="ui-item__avater" style="background-image: url({{item.imageUrl}})"></div>
 			<div class="ui-item__avater" v-else="{{item.imageUrl}}" style="background-image: url('../../image/lecture/logo.png')"></div>
@@ -13,11 +13,11 @@
 				<div class="ui-item__title">{{item.lecture.name}}</div>
 				<div class="ui-line">
 					<i class="ui-item__icon"></i>
-				    <div class="ui-item__content">举办时间：{{item.lecture.startTime}}</div>
+					<div class="ui-item__content">举办时间：{{item.lecture.startTime}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-locationIcon"></i>
-				    <div class="ui-item__content">讲座地点：{{item.lecture.address}}</div>
+					<div class="ui-item__content">讲座地点：{{item.lecture.address}}</div>
 				</div>
 				<div class="ui-line">
 					<i class="ui-item__icon is-typeIcon"></i>
@@ -26,3 +26,9 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="ui-noInfo" v-show="showInfo === 3">
+		<i></i>
+		<div class="ui-noInfo__message">暂无结果</div>
+	</div>
+</div>

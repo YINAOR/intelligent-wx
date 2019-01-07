@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/bind_view'),
+        template: _g.getTemplate('main/unbind_view'),
         data: {
             num:"",
             password:""
@@ -12,7 +12,7 @@ define(function (require, exports, module) {
             
         },
         methods: {
-            bind: function(){
+            unbind: function(){
                 var num = $("#num").val();
                 var password = $("#password").val();
                 console.log(num)
@@ -24,7 +24,6 @@ define(function (require, exports, module) {
                         student:{
                             num:num,
                             password:password,
-                            wetchatCode: sessionStorage.code
                         }
 
                     },
@@ -40,7 +39,7 @@ define(function (require, exports, module) {
                             localStorage.setItem("student",student);
 
                             layer.open({
-                                content: res.msg,
+                                content: '绑定成功！',
                                 skin: 'msg',
                                 time: 1
                             })
@@ -52,15 +51,15 @@ define(function (require, exports, module) {
 
                         }else if(res.msg == "解绑成功！"){
                             layer.open({
-                                content: res.msg,
+                                content: '解绑成功！',
                                 skin: 'msg',
-                                time: 1
+                                time: 2
                             })
                         }else{
                             layer.open({
                                 content: res.msg,
                                 skin: 'msg',
-                                time: 1
+                                time: 2
                             })
                         }
 
@@ -78,22 +77,6 @@ define(function (require, exports, module) {
             }
         }
     });
-
-    var _page = {
-        getQueryString: function(name){
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-	        var r = window.location.search.substr(1).match(reg);
-            if (r != null) 
-                return unescape(r[2]); 
-            return null;
-        },
-
-        
-    };
-
-    var code =  _page.getQueryString("code");
-
-    sessionStorage.setItem("code",code)
 
     
     module.exports = {};

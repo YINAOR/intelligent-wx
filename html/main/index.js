@@ -12,15 +12,15 @@ define(function (require, exports, module) {
             taAmount: 0, //茶座参与
         },
         ready: function() {
-
+            var _this = this;
             
-            if(sessionStorage.getItem("token") == null){
+            if(localStorage.getItem("token") == null){
                 api.openWin({
-                    url:'login_frame.html'
+                    url:'bind_frame.html'
                 })
             }else{
-                var _this = this;
-                /*var student = JSON.parse(sessionStorage.student);
+                
+                /*var student = JSON.parse(localStorage.student);
             
                 this.userAvter = student.avatar;
                 
@@ -41,7 +41,7 @@ define(function (require, exports, module) {
                             _this.taAmount = resData.taAmount;
                             _this.lsAmount = resData.lsAmount;
 
-                            sessionStorage.setItem("student",JSON.stringify(resData.student));
+                            localStorage.setItem("student",JSON.stringify(resData.student));
                         }
                     },
                     error: function(res){
@@ -88,7 +88,7 @@ define(function (require, exports, module) {
                 type: 'post',
                 contentType: 'application/json', //'application/x-www-form-urlencoded'
                 processData: false, //!== false,
-                data: JSON.stringify({token: sessionStorage.getItem('token')}),
+                data: JSON.stringify({token: localStorage.getItem('token')}),
                 success: function (res) {
                     main.registration = res.data.lsAmount; //讲座报名数
                         main.lectureRecord = res.data.lpAmount; //讲座签到数

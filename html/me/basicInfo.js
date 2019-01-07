@@ -15,7 +15,7 @@ define(function(require, exports, module) {
             email: '',
         },
         ready: function() {
-            var student = JSON.parse(sessionStorage.student);
+            var student = JSON.parse(localStorage.student);
             console.log(student)
             this.name = student.name;
             this.num = student.num;
@@ -87,9 +87,35 @@ define(function(require, exports, module) {
                                     url:"info_frame.html"
                                 })
                             },1000)
+
+                            Http.ajax({
+                                url: "user/queryProfile.do",
+                                async:false,
+                                data: {},
+                                success:function(res){
+                                    if(res.code == 200){
+                                        localStorage.removeItem("student");
+                                        var student = JSON.stringify(res.data.student);
+                                        localStorage.setItem("student",student);
+                                    }else{
+                                        layer.open({
+                                            content: res.msg,
+                                            skin: 'msg',
+                                            time: 1
+                                        })
+                                    }
+                                },
+                                error:function(res){
+                                    layer.open({
+                                        content: res.msg,
+                                        skin: 'msg',
+                                        time: 1
+                                    })
+                                }
+                            })
                         }else{
                             layer.open({
-                                content: '更新失败！',
+                                content: res.msg,
                                 skin: 'msg',
                                 time: 1
                             })

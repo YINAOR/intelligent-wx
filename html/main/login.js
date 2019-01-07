@@ -9,7 +9,7 @@ define(function (require, exports, module) {
             password:""
         },
         ready: function() {
-            sessionStorage.setItem("deviceCode", 1);
+            localStorage.setItem("deviceCode", 1);
         },
         methods: {
             login: function(){
@@ -28,10 +28,10 @@ define(function (require, exports, module) {
                         console.log('success')
                         console.log(res)
                         if(res.code == 200){
-                            sessionStorage.setItem("token",res.data.token);
+                            localStorage.setItem("token",res.data.token);
                                                
                             var student = JSON.stringify(res.data.student);
-                            sessionStorage.setItem("student",student);
+                            localStorage.setItem("student",student);
     
                             layer.open({
                                 content: '登录成功！',

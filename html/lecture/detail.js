@@ -47,7 +47,21 @@ define(function(require, exports, module) {
                             lectureId: id,
                         },
                         success: function(res) {
-                            console.log(res)
+                            if(res.code == 200){
+                                layer.open({
+                                    content: res.msg,
+                                    skin: 'msg',
+                                    time: 1,
+                                    anim: -1
+                                })
+                            }else{
+                                layer.open({
+                                    content: res.msg,
+                                    skin: 'msg',
+                                    time: 1,
+                                    anim: -1
+                                })
+                            }
                         }
                     })
                 }
@@ -58,6 +72,7 @@ define(function(require, exports, module) {
                      layer.open({
                          content: '确定要预报名吗？',
                          btn: ['确定', '取消'],
+                         anim: -1,
                          yes: function(index) {
                             Http.ajax({
                                 url: "/student/lectureSignUp.do",
@@ -92,7 +107,8 @@ define(function(require, exports, module) {
                     layer.open({
                         content: '已报名',
                         skin: 'msg',
-                        time: 1
+                        time: 1,
+                        anim:false
                     })
                 }
             },
@@ -119,7 +135,8 @@ define(function(require, exports, module) {
                                 layer.open({
                                     content: '留言成功！',
                                     skin: 'msg',
-                                    time: 2
+                                    time: 2,
+                                    anim:false
                                 })
                                 $(".weui-textarea").val('');
                                 _page.getReport();
@@ -128,7 +145,8 @@ define(function(require, exports, module) {
                                 layer.open({
                                     content: '请输入内容！',
                                     skin: 'msg',
-                                    time: 2
+                                    time: 2,
+                                    anim:false
                                 })
                             }
                         }
