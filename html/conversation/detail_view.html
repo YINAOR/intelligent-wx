@@ -1,8 +1,9 @@
 <div class="ui-main">
     <div class="ui-content">
     <div class="ui-title">{{theme}}</div>
-    <div class="ui-poster" v-show="poster" style="background-image: url({{imageUrl}})"></div>
-    <div class="ui-line"><em>茶座摘要： </em>{{content}}</div>
+    <div class="ui-poster" v-if="{{poster}}" style="background-image: url(http://120.77.204.252:80/{{poster}})"></div>
+    <div class="ui-poster" v-else style="background-image: url(../../image/lecture/desert.jpg)"></div>
+    <div class="ui-line"><em>茶座摘要： </em>{{{content}}}</div>
     <div class="ui-line"><em>时间： </em>{{dateStr}}-{{startTimeStr}}-{{endTimeStr}}</div>
     <div class="ui-line"><em>地点： </em>{{address}}</div>
     <div v-for="item in speakerLinkList">

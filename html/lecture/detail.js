@@ -7,7 +7,7 @@ define(function(require, exports, module) {
         template: _g.getTemplate('lecture/detail_view'),
         data: {
             name: '',
-            poster: '../../image/lecture/desert.jpg',
+            poster: '',
             content: '',
             dateStr: '',
             startTimeStr: '',
@@ -173,10 +173,11 @@ define(function(require, exports, module) {
                         main.name = data1.name; //讲座名字
                         main.sponsor = data1.sponsor; //主办方
                         main.organization = data1.organization; //发起组织
-
+                        main.poster = data1.imageUrl; //讲座图片
                         main.speakerLinkList = data1.speakerLinkList;
 
                         main.content = data1.content; //讲座简介
+
                         main.dateStr = data1.dateStr; //日期
                         main.startTimeStr = data1.startTimeStr; //开始时间
                         main.endTimeStr = data1.endTimeStr; //结束时间
