@@ -8,7 +8,7 @@ define(function(require, exports, module) {
         template: _g.getTemplate('conversation/detail_view'),
         data: {
             theme: '',
-            imageUrl: '../../image/lecture/desert.jpg',
+            poster: '',
             content: '',
             dateStr: '',
             startTimeStr: '',
@@ -78,6 +78,7 @@ define(function(require, exports, module) {
                         var data1 = res.data.teahouse;
                         console.log(data1)
                         main.theme = data1.theme; //讲座名字
+                        main.poster = data1.imageUrl; //茶座海报
 
                         main.speakerLinkList = data1.speakerLinkList;
 
