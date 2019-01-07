@@ -76,7 +76,7 @@ define(function(require, exports, module) {
     _page.getData();
 
     _g.setLoadmore({
-        threshold: 100
+        threshold: 0
     }, function () {
         if (!window.isNoMore) {
             main.paging.currentPage++;
