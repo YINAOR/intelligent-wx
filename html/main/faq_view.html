@@ -1,0 +1,18 @@
+<div class="page">
+
+    <div class="page__bd">
+        <article class="weui-article">
+            <section v-for="item in List">
+                <h3>提问时间：{{item.answersAndQuestions.quizTimeStr}} 问题类别：{{item.answersAndQuestions.category.name}} 学生名称：{{item.answersAndQuestions.student.name}}</h3>
+                <p>
+                    Q：{{item.answersAndQuestions.question}}
+                </p>
+                <h3>回答时间：{{item.answersAndQuestions.keyTimeStr}}</h3>
+                <p>
+                    A：{{item.answersAndQuestions.solution}}
+                </p>
+            </section>
+        </article>
+    </div>
+
+</div>

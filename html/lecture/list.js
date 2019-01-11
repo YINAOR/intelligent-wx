@@ -47,7 +47,7 @@ define(function(require, exports, module) {
     });
 
     var _page = {
-        getData: function() {
+        getList: function() {
             Http.ajax({
                 url: '/user/findLectureListPage.do',
                 isAsync: false,
@@ -73,14 +73,14 @@ define(function(require, exports, module) {
         }
     }
 
-    _page.getData();
+    _page.getList();
 
     _g.setLoadmore({
         threshold: 0
     }, function () {
         if (!window.isNoMore) {
             main.paging.currentPage++;
-            _page.getData();
+            _page.getList();
         }
     });
 

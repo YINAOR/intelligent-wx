@@ -7,7 +7,7 @@
         <div class="ui-message">{{messageNum}}</div>
     </div>-->
 	<div class="ui-user">
-        <img class="ui-portrait" v-if="{{userAvter}}" src="{{userAvter}}">
+        <img class="ui-portrait" v-if="userAvter" src="{{userAvter}}">
 
         <img class="ui-portrait" v-else src="../../image/main/user-unlogin.png">
 
@@ -27,19 +27,14 @@
     		<div class="ui-record__num">{{taAmount}}</div>
     	</div>	
     </div>
-<!--	<div class="ui-list">
-		<div class="ui-list__item" v-for="item in indexList" v-touch:tap="openWinTap($index)">
-			<i style="background-image: url({{item.icon}});"></i>
-			<span class="ui-list__title">{{item.title}}</span>
-		</div>
-	</div> -->
+
 	<div class="page_bd">
 		<!-- <div class="weui-cells__title">讲座</div> -->
         <div class="weui-cells">
 
             <a class="weui-cell weui-cell_access" href="../lecture/list_frame.html">
                 <div class="weui-cell__hd">
-                    <img v-if="{{userAvter}}" src="{{userAvter}}" alt="" style="width:20px;margin-right:5px;display:block">
+                    <img v-if="userAvter" src="{{userAvter}}" alt="" style="width:20px;margin-right:5px;display:block">
                     <img v-else src="../../image/main/lecture1.png" alt="" style="width:20px;margin-right:5px;display:block">
                 </div>
                 <div class="weui-cell__bd">
@@ -65,9 +60,20 @@
             <a class="weui-cell weui-cell_access" href="../me/question_frame.html">
                 <div class="weui-cell__hd"><img src="../../image/main/conversation1.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
                 <div class="weui-cell__bd">
-                    <p>提问</p>
+                    <p>学生提问</p>
                 </div>
-                <div class="weui-cell__ft">提问历史</div>
+                <div class="weui-cell__ft">提问反馈</div>
+            </a>
+
+        </div>
+        <div class="weui-cells" style="margin-top: 0;">
+
+            <a class="weui-cell weui-cell_access" href="faq_frame.html">
+                <div class="weui-cell__hd"><img src="../../image/main/conversation1.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>FAQ</p>
+                </div>
+                <div class="weui-cell__ft">常见问题解答</div>
             </a>
 
         </div>

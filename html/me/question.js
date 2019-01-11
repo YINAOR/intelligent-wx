@@ -18,8 +18,8 @@ define(function (require, exports, module) {
                     var typeList = res.data.categoryList;
                     var options = "";
 
-                    for(var i=1; i<=typeList.length; i++){
-                        options = options + "<option value="+i+">"+typeList[i-1].name+"</option>"
+                    for(var i=0; i<=typeList.length; i++){
+                        options = options + "<option value="+typeList[i].id+">"+typeList[i].name+"</option>"
                     }
                     $("#questionCategory").append(options)
                 },
