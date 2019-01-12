@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('me/discussion_view'),
+        template: _g.getTemplate('/html/me/discussion_view.html'),
         data: {
             name: '第九十讲毓秀讲堂----漫步人生路',
             poster: '../../image/lecture/desert.jpg',

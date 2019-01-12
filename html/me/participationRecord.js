@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('me/participationRecord_view'),
+        template: _g.getTemplate('/html/me/participationRecord_view.html'),
         data: {
             lectureshowInfo: 0,
             conversationshowInfo: 0,
@@ -85,7 +85,7 @@ define(function(require, exports, module) {
             },
             openTeaHouseDetail(id) {
                 api.openWin({
-                    url: "../conversation/detail_frame.html",
+                    url: "/html/conversation/detail_frame.html",
                     pageParam: {
                         id: id
                     }
@@ -93,7 +93,7 @@ define(function(require, exports, module) {
             },
             openLectureDetail(id) {
                 api.openWin({
-                    url: "../lecture/detail_frame.html",
+                    url: "/html/lecture/detail_frame.html",
                     pageParam: {
                         id: id
                     }

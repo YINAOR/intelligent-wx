@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/faq_view'),
+        template: _g.getTemplate('/html/main/faq_view.html'),
         data: {
             paging: {
                 currentPage: 1,

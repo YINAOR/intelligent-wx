@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('me/alterpassword_view'),
+        template: _g.getTemplate('/html/me/alterpassword_view.html'),
         data: {
             oldPassword:"",
             newPassword:""
@@ -33,7 +33,7 @@ define(function (require, exports, module) {
                             localStorage.removeItem("student");
   
                             setTimeout(function(){api.openWin({
-                                url: "login_frame.html"
+                                url: "/html/main/login_frame.html"
                             })},1000) 
 
                         }else{

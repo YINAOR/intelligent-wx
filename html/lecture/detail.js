@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('lecture/detail_view'),
+        template: _g.getTemplate('/html/lecture/detail_view.html'),
         data: {
             name: '',
             poster: '',

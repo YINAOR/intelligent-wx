@@ -3,7 +3,7 @@ define(function (require, exports, module) {
     
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('common/changeImage_view'),
+        template: _g.getTemplate('/html/common/changeImage_view.html'),
         data: {
             
         },

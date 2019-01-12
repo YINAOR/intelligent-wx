@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('me/question_view'),
+        template: _g.getTemplate('/html/me/question_view.html'),
         data: {
             typeList: []        
         },
@@ -49,7 +49,7 @@ define(function (require, exports, module) {
                         if(res.code == 200){
                             Dialog.init(res.msg,1000)
                             api.openWin({
-                                url: "../main/index_frame.html"
+                                url: "/html/main/index_frame.html"
                             })
                         }else{
                             Dialog.init(res.msg,1000)

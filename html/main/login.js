@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/login_view'),
+        template: _g.getTemplate('/html/main/login_view.html'),
         data: {
             num:"",
             password:""
@@ -36,7 +36,7 @@ define(function (require, exports, module) {
                             Dialog.init(res.msg,1000)
     
                             setTimeout(function(){api.openWin({
-                                url: "index_frame.html"
+                                url: "/html/main/index_frame.html"
                             })},1000)
                         }else{
                             Dialog.init(res.msg,1000)

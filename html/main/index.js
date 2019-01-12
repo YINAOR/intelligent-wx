@@ -15,13 +15,9 @@ define(function (require, exports, module) {
             var _this = this;
             
             if(localStorage.getItem("token") == null){
-                api.openWin({
-                    url:'/html/main/bind_frame.html'
-                })
-
-            /*    api.openWin({
-                    url:'bind_frame.html'
-                })*/
+                // api.openWin({
+                //     url:'/html/main/bind_frame.html'
+                // })
             }else{
                 
                 /*var student = JSON.parse(localStorage.student);

@@ -3,7 +3,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('conversation/search_view'),
+        template: _g.getTemplate('/html/conversation/search_view.html'),
         data: {
             showInfo: 0,
             currentPage: 1,
@@ -52,7 +52,7 @@ define(function(require, exports, module) {
             },
             openLectureDetail: function(id){
                 api.openWin({
-                    url: 'detail_frame.html',
+                    url: '/html/conversation/detail_frame.html',
                     pageParam: {
                         id: id
                     }
