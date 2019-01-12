@@ -29,17 +29,13 @@ define(function(require, exports, module) {
                             main.lectureshowInfo = 3;
                         }
                     } else {
-                        layer.open({
-                            content: res.msg,
-                            skin: 'msg',
-                            time: 1
-                        })
+                        Dialog.init(res.msg,1000)
                     }
 
 
                 },
                 error: function(res) {
-                    console.log(res)
+                    Dialog.init(res.msg,1000)
                 }
             })
 
@@ -75,11 +71,7 @@ define(function(require, exports, module) {
                                     main.conversationshowInfo = 3;
                                 }
                             } else {
-                                layer.open({
-                                    content: res.msg,
-                                    skin: 'msg',
-                                    time: 1
-                                })
+                                Dialog.init(res.msg,1000)
                             }
 
 

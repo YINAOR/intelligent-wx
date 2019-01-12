@@ -24,11 +24,7 @@ define(function (require, exports, module) {
                     $("#questionCategory").append(options)
                 },
                 error:function(res){
-                    layer.open({
-                        content: '无法获取分类！',
-                        skin: 'msg',
-                        time: 1
-                    })
+                    Dialog.init(res.msg,1000)
                 }
             })
         },
@@ -51,24 +47,16 @@ define(function (require, exports, module) {
                     success:function(res){
                         console.log(res)
                         if(res.code == 200){
-                            layer.open({
-                                content: '问题已反馈！',
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
                             api.openWin({
                                 url: "../main/index_frame.html"
                             })
                         }else{
-                            layer.open({
-                                content: '问题反馈失败！',
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
                         }
                     },
                     error:function(res){
-                        console.log(res)
+                        Dialog.init(res.msg,1000)
                     }
                 })
             }

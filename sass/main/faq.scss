@@ -1,0 +1,39 @@
+.ui-commentItem {
+	padding: .2rem 0;
+	background-color: #fff;
+	@include line(down);
+}
+
+.ui-commentItem__info {
+	display: block;
+}
+
+.ui-commentItem__content {
+	display: inline-block;
+	margin-left: .2rem;
+	vertical-align: top;
+	line-height: .5rem;
+}
+
+.ui-commentItem__name {
+	display: inline-block;
+	max-width: 2.3rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: .25rem;
+	font-weight: 600;
+	color: #000;
+}
+
+.ui-commentItem__text {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: .2rem;
+	font-size: .2rem;
+}
+
+.ui-commentItem__comment {
+	margin-left: .7rem;
+	font-size: .26rem;
+}

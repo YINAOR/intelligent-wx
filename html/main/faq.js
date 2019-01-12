@@ -9,7 +9,7 @@ define(function (require, exports, module) {
                 currentPage: 1,
                 showCount: 5
             },
-            list:[],//返回列表
+            List:[],//返回列表
 
         },
         ready: function() {       
@@ -37,19 +37,11 @@ define(function (require, exports, module) {
                         }
 
                     }else {
-                        layer.open({
-                        content: res.msg,
-                        skin: 'msg',
-                        time: 1
-                        })
+                        Dialog.init(res.msg,1000)
                     }
                 },
                 error: function(res){
-                    layer.open({
-                        content: res.msg,
-                        skin: 'msg',
-                        time: 1
-                    })    
+                    Dialog.init(res.msg,1000)  
                 }
             }) 
         }

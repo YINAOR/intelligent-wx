@@ -38,8 +38,7 @@ define(function(require, exports, module) {
             thumbsTap: function() {
 
                 if (!main.isThumbsUp) {
-                    main.isThumbsUp = !main.isThumbsUp;
-                    main.thumbsUpNum++;
+
                     Http.ajax({
                         url: "/student/lectureThumbsup.do",
                         isAsync: false,
@@ -48,19 +47,11 @@ define(function(require, exports, module) {
                         },
                         success: function(res) {
                             if(res.code == 200){
-                                layer.open({
-                                    content: res.msg,
-                                    skin: 'msg',
-                                    time: 1,
-                                    anim: -1
-                                })
+                                Dialog.init(res.msg,1000)
+                                main.isThumbsUp = !main.isThumbsUp;
+                                main.thumbsUpNum++;
                             }else{
-                                layer.open({
-                                    content: res.msg,
-                                    skin: 'msg',
-                                    time: 1,
-                                    anim: -1
-                                })
+                                Dialog.init(res.msg,1000)
                             }
                         }
                     })
@@ -69,57 +60,49 @@ define(function(require, exports, module) {
             },
             signTap: function() {
                 if (!main.isSignUp) {
-                     layer.open({
-                         content: '确定要预报名吗？',
-                         btn: ['确定', '取消'],
-                         anim: -1,
-                         yes: function(index) {
-                            Http.ajax({
-                                url: "/student/lectureSignUp.do",
-                                isAsync: false,
-                                data: {
-                                    lectureId: id,
-                                },
-                                success: function(res) {
-                                    console.log(res)
-                                    if (res.code == 200) {
-                                        layer.open({
-                                            content: '预报名成功！',
-                                            skin: 'msg',
-                                            time: 1
-                                        })
-                                        main.isSignUp = !main.isSignUp;
-                                        main.SignUpNum++;
-                                    } else {
-                                        layer.open({
-                                            content: res.msg,
-                                            skin: 'msg',
-                                            time: 1
-                                        })
+                    Dialog.init("确定要预报名吗？",{
+                        maskClick:true,
+                        mask:true,
+                        title:"讲座预报名",
+                        index:1,
+                        button:{
+                            确定:function(){
+                                Http.ajax({
+                                    url: "/student/lectureSignUp.do",
+                                    isAsync: false,
+                                    data: {
+                                        lectureId: id,
+                                    },
+                                    success: function(res) {
+                                        console.log(res)
+                                        if (res.code == 200) {
+                                            Dialog.init(res.msg,1000)
+                                            main.isSignUp = !main.isSignUp;
+                                            main.SignUpNum++;
+                                        } else {
+                                            Dialog.init(res.msg,1000)
+                                        }
                                     }
-                                }
-                            });
-
-                             layer.close(index)
-                         }
-                     })
-                } else {
-                    layer.open({
-                        content: '已报名',
-                        skin: 'msg',
-                        time: 1,
-                        anim:false
+                                });
+                                Dialog.close(this);
+                            },
+                            取消:function(){
+                                Dialog.close(this);
+                            }
+                        }
                     })
+                } else {
+                    Dialog.init('已经报名！',1000)
                 }
             },
             changeCommentTap: function() {
                 main.comment = 1;
             },
             reportTap: function() {
-                if ($(".weui-textarea").val() == null) {
-                    console.log(fail) //要添加提示
+                if ($(".weui-textarea").val() == "") {
+                    Dialog.init("请输入内容！",1000)
+                    main.comment = 0; 
                 } else {
-                    main.comment = 0;
                     var commentContent = $(".weui-textarea").val()
                     Http.ajax({
                         url: "student/saveLectureComment.do",
@@ -132,22 +115,14 @@ define(function(require, exports, module) {
                         },
                         success: function(res) {
                             if (res.code == 200) {
-                                layer.open({
-                                    content: '留言成功！',
-                                    skin: 'msg',
-                                    time: 2,
-                                    anim:false
-                                })
+                                Dialog.init(res.msg,1000)
+                                main.comment = 0;
                                 $(".weui-textarea").val('');
                                 _page.getReport();
                             } else {
-                                main.comment = 0;
-                                layer.open({
-                                    content: '请输入内容！',
-                                    skin: 'msg',
-                                    time: 2,
-                                    anim:false
-                                })
+                                console.log($(".weui-textarea").val())
+                                Dialog.init(res.msg,1000)
+                                main.comment = 0;                            
                             }
                         }
                     })

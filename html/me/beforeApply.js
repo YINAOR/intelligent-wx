@@ -35,23 +35,12 @@ define(function(require, exports, module) {
 
                     } else {
                         _this.showInfo = 3;
-                        layer.open({
-                            content: res.msg,
-                            skin: 'msg',
-                            time: 1,
-                            anim: false
-                        })
+                        Dialog.init(res.msg,1000)
                     }
                 },
                 error: function(res) {
                     _this.showInfo = 3;
-                    layer.open({
-                        content: res.msg,
-                        skin: 'msg',
-                        time: 1,
-                        anim: false
-                    })
-                    console.log(res)
+                    Dialog.init(res.msg,1000)
                 }
             })
         },

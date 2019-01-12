@@ -33,21 +33,13 @@ define(function (require, exports, module) {
                             var student = JSON.stringify(res.data.student);
                             localStorage.setItem("student",student);
     
-                            layer.open({
-                                content: '登录成功！',
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
     
                             setTimeout(function(){api.openWin({
                                 url: "index_frame.html"
                             })},1000)
                         }else{
-                            layer.open({
-                                content: res.msg,
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
                         }
                     }
                 })

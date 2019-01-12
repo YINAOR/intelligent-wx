@@ -30,7 +30,7 @@ define(function (require, exports, module) {
                     },
                     success: function(res){
                         console.log(res)
-                        if(res.msg == "绑定成功！" || res.msg == "首次绑定成功！"){
+                        if(res.code == 200){
 
                             console.log('success')
                             console.log(res)
@@ -39,11 +39,7 @@ define(function (require, exports, module) {
                             var student = JSON.stringify(res.data.student);
                             localStorage.setItem("student",student);
 
-                            layer.open({
-                                content: res.msg,
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
 
                            
                             setTimeout(function(){api.openWin({
@@ -51,28 +47,16 @@ define(function (require, exports, module) {
                             })},1000) 
 
                         }else if(res.msg == "解绑成功！"){
-                            layer.open({
-                                content: res.msg,
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
                         }else{
-                            layer.open({
-                                content: res.msg,
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
                         }
 
                     },
                     error: function(res){
                         
                         console.log(res)
-                        layer.open({
-                            content: res.msg,
-                            skin: 'msg',
-                            time: 1
-                        })
+                        Dialog.init(res.msg,1000)
                     } 
                 })
             }
