@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/bind_view'),
+        template: _g.getTemplate('/html/main/bind_view.html'),
         data: {
             num:"",
             password:""

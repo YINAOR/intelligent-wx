@@ -22,6 +22,7 @@ APPMODE == 'pub' && (function() {
 apiready = function() {
     window.isReady = true;
     var resource = [
+        'U/xui',
         'U/common',
         'L/vue/vue.base',
         $('#entry').data('path'),

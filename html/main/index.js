@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/index_view'),
+        template: _g.getTemplate('/html/main/index_view.html'),
         data: {
             userAvter: '',
             userName: '',
@@ -16,7 +16,7 @@ define(function (require, exports, module) {
             
             if(localStorage.getItem("token") == null){
                 api.openWin({
-                    url:'bind_frame.html'
+                    url:'/html/main/bind_frame.html'
                 })
             }else{
                 
@@ -48,7 +48,7 @@ define(function (require, exports, module) {
                         console.log(res)
                     }
                 })
-            }
+           }
             
         },
         methods: {
