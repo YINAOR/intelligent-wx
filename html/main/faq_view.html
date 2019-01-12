@@ -1,0 +1,17 @@
+
+
+<div class="page__bd" v-for="item in List">
+    <div class="weui-cells__title">{{item.student.name}} {{item.quizTimeStr}} {{item.category.name}}</div>
+    <div class="weui-cells weui-cells_form" >
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>
+                    <em style="color:red">Q：</em>{{item.question}}
+                </p>
+                <p>
+                    <em style="color:green">A：</em>{{item.solution}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

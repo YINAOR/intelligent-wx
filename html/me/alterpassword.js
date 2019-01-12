@@ -28,36 +28,21 @@ define(function (require, exports, module) {
                         console.log(res)
                         if(res.code == 200){
                             console.log(res)
-                            layer.open({
-                                content: res.msg,
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
                             localStorage.removeItem("token");
                             localStorage.removeItem("student");
-
-
-                           
+  
                             setTimeout(function(){api.openWin({
                                 url: "login_frame.html"
                             })},1000) 
 
                         }else{
-                            layer.open({
-                                content: res.msg,
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
                         }
 
                     },
                     error: function(res){ 
-                        console.log(res)
-                        layer.open({
-                            content: res.msg,
-                            skin: 'msg',
-                            time: 1
-                        })
+                        Dialog.init(res.msg,1000)
                     } 
                 })
             }

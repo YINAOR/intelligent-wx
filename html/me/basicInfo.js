@@ -75,11 +75,7 @@ define(function(require, exports, module) {
                     },
                     success: function(res){
                         if(res.code == 200){
-                            layer.open({
-                                content: '更新成功！',
-                                skin: 'msg',
-                                time: 1
-                            })
+                            Dialog.init(res.msg,1000)
     
                             setTimeout(function(){
                                 _g.openWin({
@@ -98,32 +94,19 @@ define(function(require, exports, module) {
                                         var student = JSON.stringify(res.data.student);
                                         localStorage.setItem("student",student);
                                     }else{
-                                        layer.open({
-                                            content: res.msg,
-                                            skin: 'msg',
-                                            time: 1
-                                        })
+                                        Dialog.init(res.msg,1000)
                                     }
                                 },
                                 error:function(res){
-                                    layer.open({
-                                        content: res.msg,
-                                        skin: 'msg',
-                                        time: 1
-                                    })
+                                    Dialog.init(res.msg,1000)
                                 }
                             })
                         }else{
-                            layer.open({
-                                content: res.msg,
-                                skin: 'msg',
-                                time: 1
-                            })
-                            console.log(res)
+                            Dialog.init(res.msg,1000)
                         }
                     },
                     error: function(res) {
-                        console.log(res)
+                        Dialog.init(res.msg,1000)
                     }
                 })
             }

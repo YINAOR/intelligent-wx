@@ -43,7 +43,7 @@ define(function(require, exports, module) {
     });
 
     var _page = {
-        getData: function() {
+        getList: function() {
             Http.ajax({
                 url: 'user/findTeahouseListPage.do',
                 isAsync: false,
@@ -71,16 +71,16 @@ define(function(require, exports, module) {
         }
     }
 
-    _page.getData();
+    _page.getList();
 
     _g.setLoadmore({
-        threshold: 100
+        threshold: 0
     }, function () {
         if (!window.isNoMore) {
             main.currentPage++;
-            _page.getData();
+            _page.getList();
         }
     });
-    
+
     module.exports = {};
 })

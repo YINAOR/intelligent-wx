@@ -26,36 +26,52 @@ define(function(require, exports, module) {
         methods: {
             signTap: function() {
                 if (!main.isSignUp) {
-                    layer.open({
-                        title: [
-                            '请输入预约说明',
-                            'background-color:#1E9FFF; color:#fff; font-size: 18px;'
-                        ],
-                        anim: 'up',
-                        content: '<input type="text" id="values" style="display:block;width:230px;height:36px;line-height:36px;margin:0 auto;padding-left: 30px; border: 1px solid #e6e6e6; color: #333;">',
-                        btn: ['确认', '取消'],
-                        yes: function(index) {
-                            var reason = $('#values').val();
-                            main.isSignUp = !main.isSignUp;
-                            main.SignUpNum++;
-                            Http.ajax({
-                                url: "/student/teahouseAppointment.do",
-                                isAsync: false,
-                                data: {
-                                    Appointment: {
-                                        Teahouse: {
-                                            id: id
+
+                    Dialog.init('<input type="text" placeholder="请输入报名说明，以便管理员筛选" id="values" style="display:block;width:230px;height:36px;line-height:36px;margin:0 auto; border: 1px solid #e6e6e6; color: #333;">',{
+                        maskClick : true, //点击背景层是否关闭弹层
+                        mask : true, //是否显示遮罩
+                        title : '茶座预报名', //添加标题
+                        index : 1,  //设置索引，用于close方法
+                        button : { //按钮
+                            确定 : function(){
+                                var reason = $('#values').val();
+                                if(reason == ""){
+                                    Dialog.init("请输入报名说明！",1000);
+                                    Dialog.close(this);
+                                }else{
+                                    Http.ajax({
+                                        url: "/student/teahouseAppointment.do",
+                                        isAsync: false,
+                                        data: {
+                                            Appointment: {
+                                                Teahouse: {
+                                                    id: id
+                                                },
+                                                reason: reason
+                                            }
                                         },
-                                        reason: reason
-                                    }
-                                },
-                                success: function(res) {
-                                    console.log(res) //添加提示
+                                        success: function(res) {
+                                            if(res.code == 200){
+                                                main.isSignUp = !main.isSignUp;
+                                                main.SignUpNum++;
+                                                Dialog.init(res.msg,1000);
+                                            }else{
+                                                Dialog.init(res.msg,1000);
+                                            }
+                                        },
+                                        error: function(res){
+                                            Dialog.init(res.msg,1000);
+                                        }
+                                    })
+                                    Dialog.close(this);
                                 }
-                            })
-                            layer.close(index)
+                            },
+                            取消 : function(){
+                                
+                                Dialog.close(this);
+                            }
                         }
-                    });
+                    })
 
                 }
 
