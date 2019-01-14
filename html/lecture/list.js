@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('lecture/list_view'),
+        template: _g.getTemplate('/html/lecture/list_view.html'),
         data: {
             showIndex: 0,
             allList: [],
@@ -37,7 +37,7 @@ define(function(require, exports, module) {
             },
             openLectureDetail(id){
                 api.openWin({
-                    url: 'detail_frame.html',
+                    url: '/html/lecture/detail_frame.html',
                     pageParam: {
                         id: id
                     }

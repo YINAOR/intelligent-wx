@@ -564,7 +564,7 @@
         getTemplate: function(url) {
             var template = '';
             $.ajax({
-                url: '../' + url + '.html',
+                url: url,
                 async: false,
                 success: function(result) {
                     template = result;

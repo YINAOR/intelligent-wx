@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/unbind_view'),
+        template: _g.getTemplate('/html/main/unbind_view.html'),
         data: {
             num:"",
             password:""

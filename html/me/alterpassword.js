@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('me/alterpassword_view'),
+        template: _g.getTemplate('/html/me/alterpassword_view.html'),
         data: {
             oldPassword:"",
             newPassword:""
@@ -15,6 +15,7 @@ define(function (require, exports, module) {
             alter: function(){
                 var oldPassword = $("#oldPassword").val();
                 var newPassword = $("#newPassword").val();
+<<<<<<< HEAD
                 var againPassword = $("#againNewPassword").val();
                 if(oldPassword != null && newPassword != null && againPassword != null){
                     if(againPassword != newPassword){
@@ -50,6 +51,28 @@ define(function (require, exports, module) {
                             } 
                         })
                     }
+=======
+                console.log(oldPassword)
+                console.log(newPassword)
+                Http.ajax({
+                    url: "student/updatePassword.do",
+                    async: false,
+                    data: {
+                        oldPassword: oldPassword,
+                        newPassword: newPassword
+                    },
+                    success: function(res){
+                        console.log(res)
+                        if(res.code == 200){
+                            console.log(res)
+                            Dialog.init(res.msg,1000)
+                            localStorage.removeItem("token");
+                            localStorage.removeItem("student");
+  
+                            setTimeout(function(){api.openWin({
+                                url: "/html/main/login_frame.html"
+                            })},1000) 
+>>>>>>> 657365843f6b69172e83979fa6d8fad3b6c139a3
 
                 }
                 

@@ -3,7 +3,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('conversation/list_view'),
+        template: _g.getTemplate('/html/conversation/list_view.html'),
         data: {
             showIndex: 0,
             allList: [],
@@ -24,7 +24,7 @@ define(function(require, exports, module) {
             },
             openTeaHouseDetail(id){
                 api.openWin({
-                    url: 'detail_frame.html',
+                    url: '/html/conversation/detail_frame.html',
                     pageParam: {
                         id: id
                     }

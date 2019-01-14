@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/index_view'),
+        template: _g.getTemplate('/html/main/index_view.html'),
         data: {
             userAvter: '',
             userName: '',
@@ -14,6 +14,7 @@ define(function (require, exports, module) {
         ready: function() {
 
             if(localStorage.getItem("token") == null){
+<<<<<<< HEAD
                 Dialog.init("请先绑定或登录！")
 
                 setTimeout(function(){
@@ -22,6 +23,42 @@ define(function (require, exports, module) {
                     })
                 },1000)
             }
+=======
+                // api.openWin({
+                //     url:'/html/main/bind_frame.html'
+                // })
+            }else{
+                
+                /*var student = JSON.parse(localStorage.student);
+            
+                this.userAvter = student.avatar;
+                
+                this.userName = student.name;*/
+                Http.ajax({
+                    url: "/user/queryProfile.do",
+                    async: false,
+                    data: {},
+                    success: function(res){
+                        if(res.code == 200){
+                            console.log("success")
+                            console.log(res)    
+                            var resData = res.data;
+                            _this.userAvter = resData.student.wetchatImage;
+                            _this.userName = resData.student.name;
+    
+                            _this.lpAmount = resData.lpAmount;
+                            _this.taAmount = resData.taAmount;
+                            _this.lsAmount = resData.lsAmount;
+
+                            localStorage.setItem("student",JSON.stringify(resData.student));
+                        }
+                    },
+                    error: function(res){
+                        console.log(res)
+                    }
+                })
+           }
+>>>>>>> 657365843f6b69172e83979fa6d8fad3b6c139a3
             
         },
         methods: {

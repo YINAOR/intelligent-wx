@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('conversation/detail_view'),
+        template: _g.getTemplate('/html/conversation/detail_view.html'),
         data: {
             theme: '',
             poster: '',

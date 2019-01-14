@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('main/bind_view'),
+        template: _g.getTemplate('/html/main/bind_view.html'),
         data: {
             num:"",
             password:""
@@ -41,7 +41,7 @@ define(function (require, exports, module) {
 
                            
                             setTimeout(function(){api.openWin({
-                                url: "index_frame.html"
+                                url: "/html/main/index_frame.html"
                             })},1000) 
 
                         }else if(res.msg == "解绑成功！"){

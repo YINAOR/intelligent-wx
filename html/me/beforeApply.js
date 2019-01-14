@@ -3,7 +3,7 @@ define(function(require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('me/beforeApply_view'),
+        template: _g.getTemplate('/html/me/beforeApply_view.html'),
         data: {
             showInfo: 0,
             showIndex: 0,
@@ -47,7 +47,7 @@ define(function(require, exports, module) {
         methods: {
             openLectureDetail(id) {
                 api.openWin({
-                    url: "../lecture/detail_frame.html",
+                    url: "/html/lecture/detail_frame.html",
                     pageParam: {
                         id: id
                     }

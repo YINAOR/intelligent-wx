@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('common/showImage_view'),
+        template: _g.getTemplate('/html/common/showImage_view.html'),
         data: {
             isBig: 1,
             img: '../../image/me/img-avatar.jpeg'

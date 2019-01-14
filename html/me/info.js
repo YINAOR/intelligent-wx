@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
     var main = new Vue({
         el: '#main',
-        template: _g.getTemplate('me/info_view'),
+        template: _g.getTemplate('/html/me/info_view.html'),
         data: {
             userAvter: '',
             name: '',
