@@ -29,26 +29,16 @@ define(function (require, exports, module) {
                     },
                     success: function(res){
                         console.log(res)
-                        if(res.code == 200){
-
-                            console.log('success')
-                            console.log(res)
-                            localStorage.setItem("token",res.data.token);
-                                                   
-                            var student = JSON.stringify(res.data.student);
-                            localStorage.setItem("student",student);
-
+                        if(res.msg == "解绑成功！"){
                             Dialog.init(res.msg,1000)
-
-                        }else if(res.msg == "解绑成功！"){
-                            Dialog.init(res.msg,1000)
+                            localStorage.removeItem("token");
+                            localStorage.removeItem("student");
                         }else{
                             Dialog.init(res.msg,1000)
                         }
 
                     },
-                    error: function(res){
-                        
+                    error: function(res){                       
                         Dialog.init(res.msg,1000)
                     } 
                 })

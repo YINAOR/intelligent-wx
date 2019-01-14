@@ -1,7 +1,10 @@
 define(function(require, exports, module) {
     var Http = require('U/http');
-    var id = api.pageParam.id;
-    console.log(id)
+    if(ifFromWX){
+        var id = _page.getQueryString("id")
+    }else{
+        var id = api.pageParam.id;
+    }
 
     var main = new Vue({
         el: '#main',
@@ -80,6 +83,15 @@ define(function(require, exports, module) {
     });
 
     var _page = {
+
+        getQueryString: function(name){
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	        var r = window.location.search.substr(1).match(reg);
+            if (r != null) 
+                return unescape(r[2]); 
+            return null;
+        },
+
         getDetail: function() {
 
             Http.ajax({
@@ -115,6 +127,8 @@ define(function(require, exports, module) {
         }
 
     }
+    
+    var ifFromWX = _page.getQueryString("from");
 
     _page.getDetail();
 

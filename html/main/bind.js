@@ -32,8 +32,6 @@ define(function (require, exports, module) {
                         console.log(res)
                         if(res.code == 200){
 
-                            console.log('success')
-                            console.log(res)
                             localStorage.setItem("token",res.data.token);
                                                    
                             var student = JSON.stringify(res.data.student);
